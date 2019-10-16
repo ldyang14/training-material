@@ -1,0 +1,12 @@
+---
+name: translatomics
+type: use
+title: Translatomics
+summary: Training materials about translatomics based on the ribo-seq
+requirements:
+  -
+    type: "internal"
+    topic_name: introduction
+docker_image: ''
+maintainers:
+  - ldyang14
