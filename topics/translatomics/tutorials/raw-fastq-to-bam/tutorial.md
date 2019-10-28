@@ -4,22 +4,19 @@ layout: tutorial_hands_on
 title: Raw FastQ file of Ribo-seq to aligned BAM file
 zenodo_link: ''
 questions:
-- Which biological questions are addressed by the tutorial?
-- Which bioinformatics techniques are important to know for this type of data?
+- How to convert raw fastq data of Ribo-seq into aligned BAM file?
+- What parts need to be noticed in processing Ribo-seq data?
 objectives:
-- The learning objectives are the goals of the tutorial
-- They will be informed by your audience and will communicate to them and to yourself
-  what you should focus on during the course
-- They are single sentences describing what a learner should be able to do once they
-  have completed the tutorial
-- You can use Bloom's Taxonomy to write effective learning objectives
+- Learn basic steps to process raw Ribo-seq data
+- Understand the difference between Ribo-seq data and RNA-seq data
+- Learn the method to remove rRNA and tRNA in the raw fastq file
 time_estimation: 3H
 key_points:
-- The take-home messages
-- They will appear at the end of the tutorial
+- Reads of Ribo-seq come from ribosome-protected RNA fragments
+- Library type of Ribo-seq usually is single-end
+- Adapters must be trimmed before mapping reads to the genome
 contributors:
-- contributor1
-- contributor2
+- ldyang14
 
 ---
 
@@ -29,27 +26,16 @@ contributors:
 
 <!-- This is a comment. -->
 
-General introduction about the topic and then an introduction of the
-tutorial (the questions and the objectives). It is nice also to have a
-scheme to sum up the pipeline used during the tutorial. The idea is to
-give to trainees insight into the content of the tutorial and the (theoretical
-and technical) key concepts they will learn.
+Ribosome profiling (Ribo-seq) is a high throughput sequencing technology to detect the gene expression through sequencing ribosome-protected fragments. Although we discovered a large amount of gene expression and regulation through RNA-seq, there are still numerous aspects about gene regulation that could be explained by RNA-seq, such as regulatory mechanism of translation. Then, the emergency of a new technology called Ribo-seq fills the technology gap for the gene translational researches. More and more studies proved the importance and accuracy about Ribo-seq, which greatly facilitated the development about related tools for analyzing Ribo-seq data. Therefore, it is badly needed to integrate those tools into one system to simple analysis process about Ribo-seq for researches who not have computer background.
 
-You may want to cite some publications; this can be done by adding citations to the
-bibliography file (`tutorial.bib` file next to your `tutorial.md` file). These citations
-must be in bibtex format. If you have the DOI for the paper you wish to cite, you can
-get the corresponding bibtex entry using [doi2bib.org](https://doi2bib.org).
+The step to analyse Ribo-seq data is similar with analyzing RNA-seq data, but some steps are different and need to be noted, such as removing contaminative reads from rRNA and tRNA. Therefore, we use a dataset to demonstrate how to analyse Ribo-seq data and what parts need to be noticed.
 
-With the example you will find in the `tutorial.bib` file, you can add a citation to
-this article here in your tutorial like this:
-{% raw %} `{% cite Batut2018 %}`{% endraw %}.
-This will be rendered like this: {% cite Batut2018 %}, and links to a
-[bibliography section](#bibliography) which will automatically be created at the end of the
-tutorial.
+## The dataset
 
+The sample dataset in this tutorial comes from the paper of *Methylation of human eukaryotic elongation factor alpha (eEF1A) by a member of a novel protein lysine methyltransferase family modulates mRNA translation,*  which is publicated on the Nucleic Acids Research. The detail information of data could be obtained from Gene Expression Omnibus database (GEO) through accessing number of **GSE97140**, and raw data could also be downloaded from there.
 
-**Please follow our
-[tutorial to learn how to fill the Markdown]({{ site.baseurl }}/topics/contributing/tutorials/create-new-tutorial-content/tutorial.html)**
+The dataset used as a sample consists of two groups, one group knockout  the gene *EEF1AKMT4,* which is a lysine (K) specific methyltransferase that efficiently methylates K36 in eukaryotic tranlation elongation factor 1 alpha (eEF1A), and the other is control group as WT.
+
 
 > ### Agenda
 >
@@ -60,120 +46,221 @@ tutorial.
 >
 {: .agenda}
 
-# Title for your first section
+# Preprocess
 
-Give some background about what the trainees will be doing in the section.
-Remember that many people reading your materials will likely be novices,
-so make sure to explain all the relevant concepts.
+First of all, you should create a history when you begin to analyze data with Galaxy.
 
-## Title for a subsection
-Section and subsection titles will be displayed in the tutorial index on the left side of
-the page, so try to make them informative and concise!
+> {% include snippets/create_new_history.md %}
+> {% include snippets/rename_history.md %}
 
-# Hands-on Sections
-Below are a series of hand-on boxes, one for each tool in your workflow file.
-Often you may wish to combine several boxes into one or make other adjustments such
-as breaking the tutorial into sections, we encourage you to make such changes as you
-see fit, this is just a starting point :)
+Before importing the data into the Galaxy, you had better to learn some rules and methods about how to import the data, see the [Getting data into Galaxy tutorial](https://training.galaxyproject.org/training-material/topics/galaxy-data-manipulation/tutorials/get-data/slides.html#1).
 
-Anywhere you find the word "***TODO***", there is something that needs to be changed
-depending on the specifics of your tutorial.
+## Which data should we upload?
 
-have fun!
+### FastQ file
 
-## Get data
+FastQ files, produced by the sequencing, contain sequences and quality information of reads. It is the basic for setting about Ribo-seq data analysis. The data is usually suffixed with '.fastq' or '.fq', if it is compression format, it will be attached ".gz" to the suffix. 
 
-> ### {% icon hands_on %} Hands-on: Data upload
+> ### {% icon details %} What is the FastQ file?
 >
-> 1. Create a new history for this tutorial
-> 2. Import the files from [Zenodo]() or from the shared data library
->
->    ```
->    
->    ```
->    ***TODO***: *Add the files by the ones on Zenodo here (if not added)*
->
->    ***TODO***: *Remove the useless files (if added)*
->
->    {% include snippets/import_via_link.md %}
->    {% include snippets/import_from_data_library.md %}
->
-> 3. Rename the datasets
-> 4. Check that the datatype
->
->    {% include snippets/change_datatype.md datatype="datatypes" %}
->
-> 5. Add to each database a tag corresponding to ...
->
->    {% include snippets/add_tag.md %}
->
-{: .hands_on}
-
-# Title of the section usually corresponding to a big step in the analysis
-
-It comes first a description of the step: some background and some theory.
-Some image can be added there to support the theory explanation:
-
-![Alternative text](../../images/image_name "Legend of the image")
-
-The idea is to keep the theory description before quite simple to focus more on the practical part.
-
-***TODO***: *Consider adding a detail box to expand the theory*
-
-> ### {% icon details %} More details about the theory
->
-> But to describe more details, it is possible to use the detail boxes which are expandable
->
+> If you want to know more information about FASTQ, see the [Quality Control tutorial]({{ site.baseurl }}{% link topics/sequence-analysis/tutorials/quality-control/tutorial.md %})
 {: .details}
 
-A big step can have several subsections or sub steps:
+2. Import Ribo-seq raw data via links
 
+{% include snippets/import_via_link.md %}
 
-## Sub-step with **My Tool**
+Here, we only select 10000 reads randomly for each sample to save time of analysis. When you want to mining information to explore significance from your own data or public data, full data should be uploaded. The small dataset used in this tutorial can be downloaded from the [Figshare](https://figshare.com/account/articles/10011419). You can also copy information in the gray box below to import this data through [Galaxy Rule-based Uploader](https://galaxyproject.github.io/training-material/topics/galaxy-data-manipulation/tutorials/upload-rules/tutorial.html).
 
-> ### {% icon hands_on %} Hands-on: Task description
+```bash
+study_accession	experiment_accession	sample_title	URL
+PRJNA380795	SRX2677571	KO1_RPF	https://ndownloader.figshare.com/files/18055442?private_link=b746ccf9f27f4135aa1d
+PRJNA380795	SRX2677572	KO2_RPF	https://ndownloader.figshare.com/files/18055445?private_link=b746ccf9f27f4135aa1d
+PRJNA380795	SRX2677573	KO3_RPF	https://ndownloader.figshare.com/files/18055448?private_link=b746ccf9f27f4135aa1d
+PRJNA380795	SRX2677574	WT1_RPF	https://ndownloader.figshare.com/files/18055451?private_link=b746ccf9f27f4135aa1d
+PRJNA380795	SRX2677575	WT2_RPF	https://ndownloader.figshare.com/files/18055454?private_link=b746ccf9f27f4135aa1d
+```
+> ### {% icon hands_on %} Hands-on: Data upload by Rule-based Uploader
 >
-> 1. **My Tool** {% icon tool %} with the following parameters:
->    - {% icon param-file %} *"Input file"*: File
->    - *"Parameter"*: `a value`
+> - Click the upload icon ( {% icon galaxy-upload %} on the top right corner in the left panel )
+> - Click the tab **Rule-based**
+>   - *“Upload data as”*: `Collection(s)`
+>   - *“Load tabular data from”*: `Pasted Table`
+> - Paste the table from the gray box above
+> - Click **Build**, then a new window as below will pops up 
+>  - ![Rule-based Uploader](../../images/raw-to-bam/rules-based-uploader1.png "Rule-based Uploader")
+> - Click **Rules** button on the bottom left corner and select `Add / Modify Column Definitions`
+>   - Click **Add Definition** button and select `List Identifier(s)`
+>     - *“List Identifier(s)”*: `C`
+>   - Click **Add Definition** button again and select `URL` instead
+>     - *“URL”*: `D`
+>  - Click **Apply**
+> - Select *"type"*: `fastqsanger`
+> - Select *"Genome"*: `hg38`. 
+> - Type *“name”*：`fastqs`. Finally, you will see the window below.
+> - ![Rule-based Uploader](../../images/raw-to-bam/rules-based-uploader2.png "Rule-based Uploader")
+> - Click **Upload** in the bottom right corner
+{: .hands_on}
+
+If your data is on your local disk, you can upload them through steps below.
+
+> {% include snippets/import_via_link.md %}
+
+### Reference sequence
+
+The reference sequence such as genomoe or transcriptome is a file that contains information of nucleotide sequence. Genomes of common species have be built-in the Galaxy, so we don't need to upload the reference genome unless we only need to parts of the genome or a specific reference sequence from ourselves.
+
+### Annotation file of the reference sequence
+
+The genome or transcriptome only provides the information of nucleotide sequence. However, information of gene's length or position is not contained in it. Therefore, we also need to provide annotaion file of reference sequence to acquire the detail information of mapped reads. The format of this file usually is GTF, GFF, and BED.
+
+> ### {% icon hands_on %} Hands-on: Upload annotation file from local disk
 >
->    ***TODO***: *Check parameter descriptions*
->
->    ***TODO***: *Consider adding a comment or tip box*
->
->    > ### {% icon comment %} Comment
->    >
->    > A comment about the tool or something else. This box can also be in the main text
->    {: .comment}
+> - Click **Get Data** in the left panel 
+>   - Click **Upload File from you computer**
+>     - Click the tab **Regular**
+>     - Click **Choose local file**, then select files you want to upload
+>     - Select *"type"*: `gtf`
+>     - Select *"Genome"*: `hg38`
+>     - Click **Start** 
 >
 {: .hands_on}
 
-***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
+You can also get the annotaion file from [UCSC Table Browser](https://genome.ucsc.edu/cgi-bin/hgTables) with reference to [Peaks to Genes tutorial](https://galaxyproject.github.io/training-material/topics/introduction/tutorials/galaxy-intro-peaks2genes/tutorial.html).
 
-> ### {% icon question %} Questions
+
+# Quality control for raw reads
+
+What is the quality of our data prepared to analyze? It is an important question to us because a good quality of Ribo-seq data  establishes the foundation to analyze accurately for the following steps. Not only that, results from quality control could also help us to understand the characteristics of our data more comprehensively. 
+
+> ### {% icon hands_on %} Hands-on: Check raw reads with **FastQC**
 >
-> 1. Question1?
-> 2. Question2?
+> 1. Run **FastQC** {% icon tool %} with the following parameters:
+>    - {% icon param-collection %} *"Short read data from your current history"*: `fastqs` (Input dataset collection)
+> 2. Inspect the `Webpage` output of **FastQC** {% icon tool %} for the `KO1_RPF` sample by clicking on the {% icon galaxy-eye %} (eye) icon
+{: .hands_on}
+
+
+
+## Integrating results of FastQC into one 
+
+Results from FastQC could tell us the information of each FASTQ file. However, we want to check the result on the whole for some reasons. For example, when there are lots of FASTQ files in one study, it is inconvenient and energy-consuming to check results of FastQC reports one by one. Therefore, we integrate FastQC reports into one using tools named "MultiQC" to check quality of our data conveniently.
+
+> ### {% icon hands_on %} Hands-on: Integrate FastQC reports into one using **MultiQC**
 >
-> > ### {% icon solution %} Solution
-> >
-> > 1. Answer for question1
-> > 2. Answer for question2
-> >
-> {: .solution}
+> 1. Run **MultiQC** {% icon tool %} with the following parameters to integrate the FastQC reports
+>      - In *"Results"*
+>        - {% icon param-select %}*"Which tool was used generate logs?"*: `FastQC`
+>        - In *"FastQC output"*
+>           - {% icon param-select %} *"Type of FastQC output?"*: `Raw data`
+>           - {% icon param-collection %} *"FastQC output"*: Click `RawData` files (output of **FastQC** {% icon tool %} on trimmed reads), then it will be highlighted
+> 2. Inspect the `Webpage` output from MultiQC
+{: .hands_on}
+
+## Trim adapters and remove low quality reads
+
+The adapter is the sequence ligated to the end of the read during library preparation. If the read of sequencing machine is greater than insert fragments of DNA, the adapter on the 3'-end will be sequenced and it will be appeared in the fastq file. Because sequences of adapters does not belong to the genome, the mapping ratio will be affected if you don't trimming adapters. Therefore, we should trim them using related tools such as cutadapt before mapping reads to the reference sequence.
+
+As mentioned above, the length of ribosome-protected fragments usually is about 30 nt. However, the sequencing read length is usually longer than it. Therefore, the library layout of Ribo-seq is commonly single-end and it's necessary to trim the adapter to lay the foundation for the next steps.
+
+Generally, if the data is your own, you can get the accurate adapters from the sequencing company's report. Another case is that the data from the public database such as [SRA](https://www.ncbi.nlm.nih.gov/sra), you may acquire adapters from the corresponding article or infer from the QC report. Here, the adapter in this sample is `CTGTAGGCACCATCAAT`.
+
+For some reasons like sequencing error, not all reads have a good quality score. Therefore, we need to trimming the low quality part in reads, such as trimming first six bases on the read. Because first six bases on the read usually have low quality scores due to the sequencing index. If not removing them, the mismatch rate would be rised, leading to lose plenty of sequencing information. 
+
+> ### {% icon hands_on %} Hands-on: Trim reads with **Cutadapt**
 >
-{: .question}
+> 1. **Cutadapt** {% icon tool %} with the following parameters:
+>    - {% icon param-select %} *"Single-end or Paired-end reads?"*: `Single-end`
+>        - {% icon param-collection %} *"FASTQ/A file"*: `fastqs` (Input dataset collection)
+>        - In *"Read 1 Options"*:
+>            - In *"3' (End) Adapters"*:
+>                - Click on *"Insert 3' (End) Adapters"*:
+>                - In *"1: 3' (End) Adapters"*:
+>                    - {% icon param-select %} *"Source"*: `Enter custom sequence`
+>                        - {% icon param-text %} *"Enter custom 3' adapter name (Optional)"*: `Illumina`
+>                        - {% icon param-text %} *"Enter custom 3' adapter sequence"*: `CTGTAGGCACCATCAAT`
+>    - In *"Filter Options"*:
+>        - {% icon param-text %} *"Minimum length"*: `25`
+>        - {% icon param-text %} *"Maximum length"*: `34`
+>    - In *"Read Modification Options"*:
+>        - {% icon param-text %} *"Quality cutoff"*: `20`
+>    - In *"Output Options"*:
+>        - {% icon param-check %} *"Report"*: `Yes`
+>
+{: .hands_on}
 
 
-## Re-arrange
 
-To create the template, each step of the workflow had its own subsection.
+# Remove contaminants
 
-***TODO***: *Re-arrange the generated subsections into sections or other subsections.
-Consider merging some hands-on boxes to have a meaningful flow of the analyses*
+It's inevitably that sequencing reads of Ribo-seq contain some contaminants from rRNA and tRNA. Hence, we should remove them to elimate inference from rRNA and tRNA prior to alignment.
+
+Firstly, we should get sequence of rRNA and tRNA from public sequence database such as NCBI or UCSC.
+
+> ### {% icon hands_on %} Hands-on: Remove contaminants with Bowtie2
+>
+> 1. **Bowtie2** {% icon tool %} with the following parameters:
+>    - {% icon param-select %} *"**Is this single or paired library**"*: `Single-end`
+>      - **FASTA/Q file**: `fastqs`
+>      - **Write unaligned reads (in fastq format) to separate file(s)**: `yes`
+>    - {% icon param-collection %}**Will you select a reference genome from your history or use a built-in index?**: `Use a genome from the history and build index`
+>      - {% icon param-collection %}**Select reference genome**: `rtRNA.fasta`
+>    - Select other parameters according your situation
+>
+{: .hands_on}	
+
+Then, the collection contained unmapped fastq file will be used to analysis below. 
+
+# Alignment
+
+Tools used to mapping RNA-seq data are also adapted in alignment of Ribo-seq data, such as HISAT2, STAR, TopHat2. Through mapping reads against to the reference sequences, we can know which genes are expressed and how the expression of them. Following gene functional analysis, we could learn more about what effects are caused by the experiment treatment. Because the length of ribosome-protected fragments is commonly about ~30 nt, the most common library type is single-end. 
+
+> ### {% icon hands_on %} Hands-on: Mapping with Hisat2
+>
+> 1. **Hisat2** {% icon tool %} with the following parameters:
+>    - {% icon param-select %} *"Source for the reference genome"*: `Use a build-in genome`
+>      - {% icon param-select %} *"Select a reference genome"*: `hg38`
+>    - {% icon param-select %} *"Is this a single or paired library"*: `Single-end`
+>      - **FASTA/Q file**: {% icon param-collection %} `unaligned reads (L)`
+>      - **Specify strand information**: `Unstranded`
+>    - In *"Summary Options"*:
+>      - {% icon param-check %} *"Output alignment summary in a more machine-friendly style."*: `Yes`
+>      - {% icon param-check %} *"Print alignment summary to a file."*: `Yes`
+>    - Select other parameters according your situation
+>
+{: .hands_on}
+
+
+
+
+> ### {% icon hands_on %} Hands-on: Mapping with STAR
+>
+> 1. **STAR** {% icon tool %} with the following parameters:
+>    - {% icon param-select %} *"Single-end or paired-end reads"*: `Single-end`
+>      - {% icon param-select %} *"RNA-Seq FASTQ/FASTA file"*: {% icon param-collection %}`unaligned reads (L)`
+>    - {% icon param-select %} *"Custom or built-in reference genome"*: `Use a build-in index`
+>      - {% icon param-select %} *"Reference genome with or without an annotation"*: `use genome reference with builtin gene-model`	
+>
+{: .hands_on}
+
+## Quality control for mapped reads
+
+How many reads were mapped to the genome successfully? If a very low mapping ratio in one or more samples, we should think about the reason leading to this. Of course the following analysis should be suspended unitl the reason of abnormal mapping ratio was found and solved. Therefore, We should check the quality of mapping firstly.
+
+> ### {% icon hands_on %} Hands-on: Aggregate the HISAT2 summary files with **MultiQC**
+>
+> 1. **MultiQC** {% icon tool %} with the following parameters:
+>    - In *"Results"*
+>      - {% icon param-select %} *"Which tool was used generate logs?"*: `HISAT2`
+>      - {% icon param-collection %} *"Output of HISAT2"*: `Mapping summary` (output of **HISAT2** {% icon tool %})
+> 2. Inspect the `Webpage` output from MultiQC
+	{: .hands_on}	
+
+![Mapping results of Hisat2](../../images/raw-to-bam/map_hisat2_se_plot.png "Mapping results of Hisat2")
 
 # Conclusion
+
 {:.no_toc}
 
-Sum up the tutorial and the key takeaways here. We encourage adding an overview image of the
-pipeline used.
+In conclusion, we introduce the basic process and some notable points for preprocessing Ribo-seq data. We can get the BAM file to carry out subsequent analysis through this tutorial.
+
