@@ -262,7 +262,12 @@ Run `Stacks: De novo map` Galaxy tool. This program will run ustacks, cstacks, a
 > > {: .solution }
 > {: .question}
 {: .hands_on}
+<<<<<<< HEAD
 > You can now for xample filter this dataset to only keep FST'=1 loci for further analysis...
+=======
+
+You can now for example filter this dataset to only keep FST'=1 loci for further analysis...
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 
 # Conclusion
 {:.no_toc}

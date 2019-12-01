@@ -99,6 +99,7 @@ RMSD, or root-mean-square deviation, is a standard measure of structural distanc
 ![Snapshot of RMSD plot]({{ site.baseurl }}{% link topics/computational-chemistry/images/RMSD_plot_33.png %} "RMSD plot for a short CBH1 simulation")
 ![Snapshot of RMSD histogram]({{ site.baseurl }}{% link topics/computational-chemistry/images/RMSD_Histogram_Plot_34.png %} "RMSD histogram for a short CBH1 simulation")
 
+<<<<<<< HEAD
 > > ### {% icon question %} Question
 > >
 > > What do the features in the RMSD plot tell us?
@@ -109,6 +110,18 @@ RMSD, or root-mean-square deviation, is a standard measure of structural distanc
 > > > The three peaks visible in the histogram suggests the presence of three main conformations which are accessed during the trajectory.
 > > {: .solution}
 > {: .question}
+=======
+> ### {% icon question %} Question
+>
+> What do the features in the RMSD plot tell us?
+>
+> > ### {% icon solution %} Solution
+> > The increase in the RMSD plot with time shows the protein steadily deviates from its original conformation.
+> >
+> > The three peaks visible in the histogram suggests the presence of three main conformations which are accessed during the trajectory.
+> {: .solution}
+{: .question}
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 
 
 ## RMSF
@@ -170,6 +183,7 @@ In summary:
 
 ![Snapshot of PCA plot]({{ site.baseurl }}{% link topics/computational-chemistry/images/PCA_plot_46.png %} "PCA plot for a short CBH1 simulation")
 
+<<<<<<< HEAD
 > > ### {% icon question %} Question
 > >
 > > What do the features in the RMSD plot tell us? Do the principal coordinates have a meaning?
@@ -178,6 +192,16 @@ In summary:
 > > > Here, PCA shows the statistically meaningful conformations in the CBH1 trajectory. The principal motions within the trajectory and the vital motions needed for conformational changes can be identified. Two distinct groupings along the PC1 plane, indicating a non-periodic conformational change, are identified. The groupings along the PC2 and PC3 planes do not completely cluster separately, implying that these global motions are periodic. The PC1 is linked to an active site motion that limits the motion to a key glycosidic bond.
 > > {: .solution}
 > {: .question}
+=======
+> ### {% icon question %} Question
+>
+> What do the features in the RMSD plot tell us? Do the principal coordinates have a meaning?
+>
+> > ### {% icon solution %} Solution
+> > Here, PCA shows the statistically meaningful conformations in the CBH1 trajectory. The principal motions within the trajectory and the vital motions needed for conformational changes can be identified. Two distinct groupings along the PC1 plane, indicating a non-periodic conformational change, are identified. The groupings along the PC2 and PC3 planes do not completely cluster separately, implying that these global motions are periodic. The PC1 is linked to an active site motion that limits the motion to a key glycosidic bond.
+> {: .solution}
+{: .question}
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 
 ## Workflow vs. individual tools
 You can choose to use the tools one by one as described above, or alternatively combine into a single analysis using the workflow provided.

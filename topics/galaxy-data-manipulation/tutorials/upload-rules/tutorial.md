@@ -66,7 +66,10 @@ This approach could be used to manipulate lists of uploads coming from many diff
 > PRJDA60709      | SAMD00016382     | DRX000480            | File 1
 >
 > Download the resulting tabular data describing the files by clicking the "TEXT" link at the top of the page. Alternatively, the resulting sample sheet can be downloaded directly [here](https://www.ebi.ac.uk/ena/data/warehouse/filereport?accession=PRJDA60709&result=read_run&fields=study_accession,sample_accession,experiment_accession,fastq_ftp&download=txt). The number and size of the files for this example are relatively small for sequencing data but larger files and larger numbers of files should work as well - Galaxy will just need more time to download and process the files.
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 {: .hands_on}
 
 Unfortunately the ENA ftp server is not operational at this moment,

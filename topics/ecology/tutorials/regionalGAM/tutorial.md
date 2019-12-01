@@ -417,11 +417,19 @@ We would like to know if the year has an influence on the abundance of a species
 
 > ### {% icon details %} More details about the statistics
 > The model fitted to the data is:
+<<<<<<< HEAD
 > $$ Y_i = \alpha + \beta x_i + \epsilon_i $$  
 > with $$Y_i$$ = value of the dependent variable for the unit $$i$$  
 > $$\alpha$$ = intercept  
 > $$\beta$$ = slope  
 > $$x_i$$ = value of the explanatory variable for the unit $$i$$  
+=======
+> $$ Y_i = \alpha + \beta x_i + \epsilon_i $$
+> with $$Y_i$$ = value of the dependent variable for the unit $$i$$
+> $$\alpha$$ = intercept
+> $$\beta$$ = slope
+> $$x_i$$ = value of the explanatory variable for the unit $$i$$
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 > $$e_i$$ = residual for the unit $$i$$
 >
 {: .details}
@@ -443,6 +451,7 @@ Details about the output from the tool
 3. The standard error of the coefficients
 4. The value of the "hypothesis test statistic"
 5. The probability value.
+<<<<<<< HEAD
 >
 > > ### {% icon question %} Questions
 > >
@@ -459,6 +468,23 @@ Details about the output from the tool
 > > {: .solution}
 > {: .question}
 >
+=======
+
+> ### {% icon question %} Questions
+>
+> 1. What are the estimates of the regression coefficients?
+> 2. Can we use this model to make good predictions?
+> 3. Is the test p-value significant?
+>
+> > ### {% icon solution %} Solutions
+> >
+> > 1. Intercept is 183.33852 and the slope (Year) is -0.08952.
+> > 2. No, the residual standard error is high.
+> > 3. Yes (0.0282 < 0.05).
+> >
+> {: .solution}
+{: .question}
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 
 We can also test for autocorrelation in the data.
 

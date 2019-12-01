@@ -376,7 +376,11 @@ chrM	8557	.	G	C	2590.97	.	AB=0.267066;ABP=790.051;AC=2;AF=0.5;AN=4;AO=446;CIGAR=
 ```
 # Looking at the data
 
+<<<<<<< HEAD
 For visualizing VCFs Galaxy relies on the two external tools.  The first is called [VCF.IOBIO](http://vcf.iobio.io/) and is developed by [Gabor Marth's group](http://marthlab.org/) at the University of Utah. The second is called [IGV](http://software.broadinstitute.org/software/igv/) developed by Broad Institute.  
+=======
+For visualizing VCFs Galaxy relies on the two external tools.  The first is called [VCF.IOBIO](http://vcf.iobio.io/) and is developed by [Gabor Marth's group](http://marthlab.org/) at the University of Utah. The second is called [IGV](http://software.broadinstitute.org/software/igv/) developed by Broad Institute.
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 
 ## VCF.IOBIO
 
@@ -471,6 +475,10 @@ To cut these columns out we will use **Text Manipulation** &#8594; **Cut**
 >8557  G   C   raw_mother-ds- 265   946
 >
 >```
+<<<<<<< HEAD
+=======
+{: .hands_on}
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 
 Let's look at site 4,243. At this site Mother has 841 `G`s (since `G` is an alternative allele) and 1,068-841=227 `A`s. This child has 767 `G`s and 1,558-767=791 `A`s:
 

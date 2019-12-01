@@ -58,7 +58,11 @@ We have now a tabular file with about 10,001 lines and many columns.
 
 > ### {% icon question %} Questions
 > 1. What do the lines in the files represent?
+<<<<<<< HEAD
 > 2. What are the columns 1, 2, 3 and 50 of the generated file?
+=======
+> 2. What are the columns 1, 2, 3 and 52 of the generated file?
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 >
 > > ### {% icon solution %} Solution
 > > 1. Each line represent an observation of Chrysemys picta, with its location, and some other metadata
@@ -70,7 +74,11 @@ We would to extraction the 4 columns previously cited and keep only occurrence r
 
 > ### {% icon hands_on %} Hands-on: Import the data
 > 1. **Cut columns** {% icon tool %} with the following parameters
+<<<<<<< HEAD
 >    - *"Cut columns"*: `c1,c2,c3,c50`
+=======
+>    - *"Cut columns"*: `c1,c2,c3,c52`
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 >    - *"Delimited by"*: `Tab`
 >    - {% icon param-file %} *"From"*: output of **Get species occurrences data**
 >
@@ -86,7 +94,11 @@ We would to extraction the 4 columns previously cited and keep only occurrence r
 >    > How many occurrences have been conserved?
 >    >
 >    > > ### {% icon solution %} Solution
+<<<<<<< HEAD
 >    > > 71.18% of the occurrences (7,118) are conserved
+=======
+>    > > 64.55% of the occurrences (6,456) are conserved
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 >    > {: .solution }
 >    {: .question}
 >
@@ -100,17 +112,28 @@ We would to extraction the 4 columns previously cited and keep only occurrence r
 
 [Wallace](https://wallaceecomod.github.io/) is a R Shiny app integrated into Galaxy. It provides an interactive environment for the rapid and effective development and evaluation of SDM, including data download, cleaning, partitioning, modeling, visualisation and predictions.
 
+<<<<<<< HEAD
 ## Obtain occurrence data
+=======
+## Transmit occurrence data from Galaxy to Wallace
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 
 With this you can either upload file you've loaded earlier from Galaxy data or you can download data directly from Wallace. Let's use the data from your Galaxy history:
 
 > ### {% icon hands_on %} Hands-on: Launch Wallace
+<<<<<<< HEAD
 > 1. Click on **Visualization** (top panel) and then **Interactive Environments**
 > 2. Select
 >    - *"GIE"*: `interactiveShiny`
 >    - *"Image"*: `valentinchdock/wallace-galaxy-ie`
 >    - *"Datasets"*: output of **Tabular to CSV**
 > 3. In Wallace
+=======
+> 1. Go to https://live.usegalaxy.eu/
+> 2. Verify your current history is the history containing previous filtered occurences data, then click on the Wallace Shiny app shortcut image
+> 3. Go to User > Active InteractiveTools, then click on the active InteractiveTool name so here `Wallace visualisation`
+> 4. In Wallace
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 >    1. Go to **1 Occ Data**
 >    2. In **Obtain Occurrence Data**
 >       - *"Modules Available"*: `Galaxy History User`
@@ -306,7 +329,11 @@ Wallace can use the trained model to predict possible species distributions in a
 > 1. Go to **8 Project**
 > 2. In **Project Model**
 >    - *"Modules Available"*: `Project to New Extent`
+<<<<<<< HEAD
 > > 3. In the middle panel,
+=======
+> 3. In the middle panel,
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 >    1. Click on the polygon icon on the map
 >    2. Draw a polygon around a part of Canada
 > 2. In **Project Model**

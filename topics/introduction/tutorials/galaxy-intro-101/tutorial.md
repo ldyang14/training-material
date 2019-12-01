@@ -263,10 +263,17 @@ This file contains only two columns. The first contains the exon IDs, and the se
 > ### {% icon question %} Question
 > How many exons are there in total in your file?
 >
+<<<<<<< HEAD
 >    > > ### {% icon solution %} Solution
 >    > > Each line now represents a different exon, so you can see the answer to this when you expand the history item, as in the image above. The exact number you see for your dataset may be slightly different due to the updates to the exon and SNPs information in UCSC.
 >    > >
 >    > {: .solution }
+=======
+> > ### {% icon solution %} Solution
+> > Each line now represents a different exon, so you can see the answer to this when you expand the history item, as in the image above. The exact number you see for your dataset may be slightly different due to the updates to the exon and SNPs information in UCSC.
+> >
+> {: .solution }
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 {: .question}
 
 ## Sort the exons by SNPs count

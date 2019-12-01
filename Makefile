@@ -140,6 +140,13 @@ check-framework:
 		ruby _plugins/jekyll-notranslate.rb
 .PHONY: check-framework
 
+<<<<<<< HEAD
+=======
+check-broken-boxes: build ## List tutorials containing broken boxes
+	./bin/check-broken-boxes
+.PHONY: check-broken-boxes
+
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 check: check-yaml check-frontmatter check-html-internal check-html check-slides check-workflows check-references check-snippets ## run all checks
 .PHONY: check
 
