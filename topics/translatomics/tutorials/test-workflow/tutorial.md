@@ -1,7 +1,7 @@
 ---
 layout: tutorial_hands_on
 
-title: Preprocess of Ribo-seq data
+title: test-workflow
 zenodo_link: ''
 questions:
 - Which biological questions are addressed by the tutorial?
@@ -13,7 +13,7 @@ objectives:
 - They are single sentences describing what a learner should be able to do once they
   have completed the tutorial
 - You can use Bloom's Taxonomy to write effective learning objectives
-time_estimation: 3H
+time_estimation: ''
 key_points:
 - The take-home messages
 - They will appear at the end of the tutorial
@@ -128,13 +128,142 @@ The idea is to keep the theory description before quite simple to focus more on 
 A big step can have several subsections or sub steps:
 
 
-## Sub-step with **My Tool**
+## Sub-step with **FastQC**
 
 > ### {% icon hands_on %} Hands-on: Task description
 >
-> 1. **My Tool** {% icon tool %} with the following parameters:
->    - {% icon param-file %} *"Input file"*: File
->    - *"Parameter"*: `a value`
+> 1. **FastQC** {% icon tool %} with the following parameters:
+>
+>    ***TODO***: *Check parameter descriptions*
+>
+>    ***TODO***: *Consider adding a comment or tip box*
+>
+>    > ### {% icon comment %} Comment
+>    >
+>    > A comment about the tool or something else. This box can also be in the main text
+>    {: .comment}
+>
+{: .hands_on}
+
+***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
+
+> ### {% icon question %} Questions
+>
+> 1. Question1?
+> 2. Question2?
+>
+> > ### {% icon solution %} Solution
+> >
+> > 1. Answer for question1
+> > 2. Answer for question2
+> >
+> {: .solution}
+>
+{: .question}
+
+## Sub-step with **Cutadapt**
+
+> ### {% icon hands_on %} Hands-on: Task description
+>
+> 1. **Cutadapt** {% icon tool %} with the following parameters:
+>    - *"Single-end or Paired-end reads?"*: `Single-end`
+>        - In *"Read 1 Options"*:
+>            - In *"3' (End) Adapters"*:
+>                - {% icon param-repeat %} *"Insert 3' (End) Adapters"*
+>                    - *"Source"*: `Enter custom sequence`
+>                        - *"Enter custom 3' adapter name (Optional if Multiple output is 'No')"*: `Illumina`
+>                        - *"Enter custom 3' adapter sequence"*: `CTGTAGGCACCATCAAT`
+>    - In *"Filter Options"*:
+>        - *"Minimum length"*: `25`
+>        - *"Maximum length"*: `34`
+>    - In *"Read Modification Options"*:
+>        - *"Quality cutoff"*: `20`
+>        - *"Trim Ns"*: `Yes`
+>    - In *"Output Options"*:
+>        - *"Report"*: `Yes`
+>
+>    ***TODO***: *Check parameter descriptions*
+>
+>    ***TODO***: *Consider adding a comment or tip box*
+>
+>    > ### {% icon comment %} Comment
+>    >
+>    > A comment about the tool or something else. This box can also be in the main text
+>    {: .comment}
+>
+{: .hands_on}
+
+***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
+
+> ### {% icon question %} Questions
+>
+> 1. Question1?
+> 2. Question2?
+>
+> > ### {% icon solution %} Solution
+> >
+> > 1. Answer for question1
+> > 2. Answer for question2
+> >
+> {: .solution}
+>
+{: .question}
+
+## Sub-step with **MultiQC**
+
+> ### {% icon hands_on %} Hands-on: Task description
+>
+> 1. **MultiQC** {% icon tool %} with the following parameters:
+>    - In *"Results"*:
+>        - {% icon param-repeat %} *"Insert Results"*
+>            - *"Which tool was used generate logs?"*: `FastQC`
+>
+>    ***TODO***: *Check parameter descriptions*
+>
+>    ***TODO***: *Consider adding a comment or tip box*
+>
+>    > ### {% icon comment %} Comment
+>    >
+>    > A comment about the tool or something else. This box can also be in the main text
+>    {: .comment}
+>
+{: .hands_on}
+
+***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
+
+> ### {% icon question %} Questions
+>
+> 1. Question1?
+> 2. Question2?
+>
+> > ### {% icon solution %} Solution
+> >
+> > 1. Answer for question1
+> > 2. Answer for question2
+> >
+> {: .solution}
+>
+{: .question}
+
+## Sub-step with **HISAT2**
+
+> ### {% icon hands_on %} Hands-on: Task description
+>
+> 1. **HISAT2** {% icon tool %} with the following parameters:
+>    - *"Source for the reference genome"*: `Use a built-in genome`
+>        - *"Select a reference genome"*: `hg38`
+>    - *"Is this a single or paired library"*: `Single-end`
+>    - In *"Summary Options"*:
+>        - *"Output alignment summary in a more machine-friendly style."*: `Yes`
+>        - *"Print alignment summary to a file."*: `Yes`
+>    - In *"Advanced Options"*:
+>        - *"Input options"*: `Use default values`
+>        - *"Alignment options"*: `Use default values`
+>        - *"Scoring options"*: `Use default values`
+>        - *"Spliced alignment options"*: `Use default values`
+>        - *"Reporting options"*: `Use default values`
+>        - *"Output options"*: `Use default values`
+>        - *"Other options"*: `Use default values`
 >
 >    ***TODO***: *Check parameter descriptions*
 >

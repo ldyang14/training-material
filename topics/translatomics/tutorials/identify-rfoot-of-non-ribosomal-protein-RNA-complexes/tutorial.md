@@ -1,25 +1,17 @@
 ---
 layout: tutorial_hands_on
 
-title: Identification of RNA regions protected by non-ribosomal protein complex
-zenodo_link: ''
+title: Identification of RNA regions protected by non-ribosomal protein complexes
+zenodo_link: 'https://figshare.com/s/4cd0d0cd4c81705fdf92'
 questions:
-- Which biological questions are addressed by the tutorial?
-- Which bioinformatics techniques are important to know for this type of data?
+- How to identify RNA fragments from non-ribosomal protein-RNA complexes?
 objectives:
-- The learning objectives are the goals of the tutorial
-- They will be informed by your audience and will communicate to them and to yourself
-  what you should focus on during the course
-- They are single sentences describing what a learner should be able to do once they
-  have completed the tutorial
-- You can use Bloom's Taxonomy to write effective learning objectives
-time_estimation: 3H
+- Learning the method to identify RNA fragments from non-ribosomal protein-RNA complexes
+time_estimation: '1H'
 key_points:
-- The take-home messages
-- They will appear at the end of the tutorial
-contributors:
-- contributor1
-- contributor2
+- RNA fragments from non-ribosomal protein-RNA complexes may have potential functions in the cell, but we need to remove them when processing Ribo-seq data analysis.
+contributors: 
+- ldyang14
 
 ---
 
@@ -29,27 +21,9 @@ contributors:
 
 <!-- This is a comment. -->
 
-General introduction about the topic and then an introduction of the
-tutorial (the questions and the objectives). It is nice also to have a
-scheme to sum up the pipeline used during the tutorial. The idea is to
-give to trainees insight into the content of the tutorial and the (theoretical
-and technical) key concepts they will learn.
+Sequencing reads from Ribosome profiling are not all from actively translated regions of RNA. Because it is inevitable that non-ribosomal protein-RNA complexes still remained during the process of extracting ribosome-protected fragments. However, it is not that these reads are useless and need to be discard. On the contrary, these reads may come from some potential regulatory regions such as lncRNAs, miRNAs. Hence, we introduce how to identify RNA regions protected by non-ribosomal protein complexes (the region enclosed by blue circle in figure below) in this tutorial.
 
-You may want to cite some publications; this can be done by adding citations to the
-bibliography file (`tutorial.bib` file next to your `tutorial.md` file). These citations
-must be in bibtex format. If you have the DOI for the paper you wish to cite, you can
-get the corresponding bibtex entry using [doi2bib.org](https://doi2bib.org).
-
-With the example you will find in the `tutorial.bib` file, you can add a citation to
-this article here in your tutorial like this:
-{% raw %} `{% cite Batut2018 %}`{% endraw %}.
-This will be rendered like this: {% cite Batut2018 %}, and links to a
-[bibliography section](#bibliography) which will automatically be created at the end of the
-tutorial.
-
-
-**Please follow our
-[tutorial to learn how to fill the Markdown]({{ site.baseurl }}/topics/contributing/tutorials/create-new-tutorial-content/tutorial.html)**
+![Fragments from non-ribosomal protein-RNA complexes](../../images/foot-non-ribosomes/foot_from_non-ribosomes.png "Fragments from non-ribosomal protein-RNA complexes (cited from {% cite ingolia2019ribosome %})")
 
 > ### Agenda
 >
@@ -60,120 +34,56 @@ tutorial.
 >
 {: .agenda}
 
-# Title for your first section
 
-Give some background about what the trainees will be doing in the section.
-Remember that many people reading your materials will likely be novices,
-so make sure to explain all the relevant concepts.
 
-## Title for a subsection
-Section and subsection titles will be displayed in the tutorial index on the left side of
-the page, so try to make them informative and concise!
+# Import data
 
-# Hands-on Sections
-Below are a series of hand-on boxes, one for each tool in your workflow file.
-Often you may wish to combine several boxes into one or make other adjustments such
-as breaking the tutorial into sections, we encourage you to make such changes as you
-see fit, this is just a starting point :)
-
-Anywhere you find the word "***TODO***", there is something that needs to be changed
-depending on the specifics of your tutorial.
-
-have fun!
-
-## Get data
-
-> ### {% icon hands_on %} Hands-on: Data upload
+> ### {% icon hands_on %} Hands-on: Upload data
 >
-> 1. Create a new history for this tutorial
-> 2. Import the files from [Zenodo]() or from the shared data library
+> 1. Create a new history and give it a name
 >
->    ```
->    
->    ```
->    ***TODO***: *Add the files by the ones on Zenodo here (if not added)*
+>    {% include snippets/create_new_history.md %}
+>    {% include snippets/rename_history.md %}
 >
->    ***TODO***: *Remove the useless files (if added)*
+> 2. Upload the required files
 >
 >    {% include snippets/import_via_link.md %}
+>
+>    - the links of these files are shown below
+>
+>      ```
+>      https://ndownloader.figshare.com/files/20028590?private_link=4cd0d0cd4c81705fdf92
+>      https://ndownloader.figshare.com/files/20028587?private_link=4cd0d0cd4c81705fdf92
+>      ```
+>
 >    {% include snippets/import_from_data_library.md %}
->
-> 3. Rename the datasets
-> 4. Check that the datatype
->
->    {% include snippets/change_datatype.md datatype="datatypes" %}
->
-> 5. Add to each database a tag corresponding to ...
->
->    {% include snippets/add_tag.md %}
->
-{: .hands_on}
+{:. hands_on}
+# Detecting non-ribosomal reads 
 
-# Title of the section usually corresponding to a big step in the analysis
+The difference between non-ribomsome protein-RNA complexes and ribosome complexes is shown below. Reads from ribosome-RNA complexes can be observed obviously 3-nt periodicity while reads from non-ribosomal protein-RNA complexes are highly localized distribution. 
 
-It comes first a description of the step: some background and some theory.
-Some image can be added there to support the theory explanation:
+![Diff non-ribosome and ribosome](../../images/foot-non-ribosomes/diff-of-non-ribosome-foot.png "The difference between non-ribosome protein-RNA complexes and ribosome complexes (cited from {% cite ji2018rfoot %} )")
 
-![Alternative text](../../images/image_name "Legend of the image")
-
-The idea is to keep the theory description before quite simple to focus more on the practical part.
-
-***TODO***: *Consider adding a detail box to expand the theory*
-
-> ### {% icon details %} More details about the theory
+> ### {% icon hands_on %} Hands-on: Detect reads from non-ribosomes
 >
-> But to describe more details, it is possible to use the detail boxes which are expandable
->
-{: .details}
-
-A big step can have several subsections or sub steps:
-
-
-## Sub-step with **My Tool**
-
-> ### {% icon hands_on %} Hands-on: Task description
->
-> 1. **My Tool** {% icon tool %} with the following parameters:
->    - {% icon param-file %} *"Input file"*: File
->    - *"Parameter"*: `a value`
->
->    ***TODO***: *Check parameter descriptions*
->
->    ***TODO***: *Consider adding a comment or tip box*
->
->    > ### {% icon comment %} Comment
->    >
->    > A comment about the tool or something else. This box can also be in the main text
->    {: .comment}
+> - Run **Rfoot** {% icon tool %} with following parameters:
+>   - {% icon param-collection %} *"input read mapping file in SAM format"*: `sub_RPF_WT_1.sorted.q20.sam`
+>   - {% icon param-file %} *"transcript annotation file in genePred format"*: `gencode.v32.annotation.genePred.txt`
 >
 {: .hands_on}
 
-***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
+The results from Rfoot's analysis revealed potential non-ribosomal protein-RNA regions. Some parts of results are shown in below. Each row represents a region from non-ribosomal protein-RNA and columns show some basic information of this region, such as  the start and end site, length, and so on, according to which we can discover potential gene regulatory regions. Moreover, we can explore the regulatory mechanism of translation of these regions and then provide evidence for relavant researches.
 
-> ### {% icon question %} Questions
->
-> 1. Question1?
-> 2. Question2?
->
-> > ### {% icon solution %} Solution
-> >
-> > 1. Answer for question1
-> > 2. Answer for question2
-> >
-> {: .solution}
->
-{: .question}
-
-
-## Re-arrange
-
-To create the template, each step of the workflow had its own subsection.
-
-***TODO***: *Re-arrange the generated subsections into sections or other subsections.
-Consider merging some hands-on boxes to have a meaningful flow of the analyses*
+| transcriptID       | chrom | strand | start    | end      | length | read.num | max.pos  | max.num | positions                                                    |
+| ------------------ | ----- | ------ | -------- | -------- | ------ | -------- | -------- | ------- | ------------------------------------------------------------ |
+| ENST00000202773.13 | chr12 | -      | 1.12E+08 | 1.12E+08 | 9      | 88       | 1.12E+08 | 21      | 112408645:1\|112408646:10\|112408647:3\|112408648:7\|112408649:21\|112408650:17\|112408651:17\|112408652:8\|112408653:4\| |
+| ENST00000215375.7  | chr19 | +      | 1241812  | 1241814  | 3      | 21       | 1241813  | 14      | 1241812:1\|1241813:14\|1241814:6\|                           |
+| ENST00000217133.1  | chr20 | +      | 59024173 | 59024180 | 8      | 15       | 59024174 | 10      | 59024173:2\|59024174:10\|59024175:1\|59024179:1\|59024180:1\| |
+| ENST00000219821.9  | chr16 | +      | 19498729 | 19498738 | 10     | 781      | 19498734 | 384     | 19498729:1\|19498730:5\|19498731:11\|19498732:10\|19498733:23\|19498734:384\|19498735:52\|19498736:238\|19498738:57\| |
+| ENST00000221265.8  | chr19 | -      | 39391023 | 39391026 | 4      | 13       | 39391025 | 10      | 39391023:1\|39391024:1\|39391025:10\|39391026:1\|            |
 
 # Conclusion
+
 {:.no_toc}
 
-Sum up the tutorial and the key takeaways here. We encourage adding an overview image of the
-pipeline used.
+We get a table contained detailed information of RNA fragments from non-ribosomal protein-RNA complexes through `Rfoot`. Then we can further explore functions of them if we interested some specific genomic regions. Besides, we also removed some obstacles for the subsequent analysis.

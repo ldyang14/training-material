@@ -2,7 +2,7 @@
 name: translatomics
 type: use
 title: Translatomics
-summary: Training materials about translatomics based on the ribo-seq
+summary: Training materials about translatomics based on the Ribo-Seq
 requirements:
   -
     type: "internal"
@@ -10,3 +10,4 @@ requirements:
 docker_image: ''
 maintainers:
   - ldyang14
+

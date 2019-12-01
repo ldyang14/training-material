@@ -2,7 +2,7 @@
 layout: tutorial_hands_on
 
 title: Raw FastQ file of Ribo-seq to aligned BAM file
-zenodo_link: ''
+zenodo_link: 'https://figshare.com/s/b746ccf9f27f4135aa1d'
 questions:
 - How to convert raw fastq data of Ribo-seq into aligned BAM file?
 - What parts need to be noticed in processing Ribo-seq data?
@@ -10,7 +10,7 @@ objectives:
 - Learn basic steps to process raw Ribo-seq data
 - Understand the difference between Ribo-seq data and RNA-seq data
 - Learn the method to remove rRNA and tRNA in the raw fastq file
-time_estimation: 3H
+time_estimation: '2h'
 key_points:
 - Reads of Ribo-seq come from ribosome-protected RNA fragments
 - Library type of Ribo-seq usually is single-end
@@ -26,7 +26,7 @@ contributors:
 
 <!-- This is a comment. -->
 
-Ribosome profiling (Ribo-seq) is a high throughput sequencing technology to detect the gene expression through sequencing ribosome-protected fragments. Although we discovered a large amount of gene expression and regulation through RNA-seq, there are still numerous aspects about gene regulation that could be explained by RNA-seq, such as regulatory mechanism of translation. Then, the emergency of a new technology called Ribo-seq fills the technology gap for the gene translational researches. More and more studies proved the importance and accuracy about Ribo-seq, which greatly facilitated the development about related tools for analyzing Ribo-seq data. Therefore, it is badly needed to integrate those tools into one system to simple analysis process about Ribo-seq for researches who not have computer background.
+Ribosome profiling (Ribo-seq) is a high throughput sequencing technology to detect the gene expression through sequencing ribosome-protected fragments. Although we discovered a large amount of gene expression and regulation through RNA-seq, there are still numerous aspects about gene regulation that could not be explained by RNA-seq, such as regulatory mechanism of translation. Then, the emergency of a new technology called Ribo-seq fills the technology gap for the gene translational researches. More and more studies proved the importance and accuracy about Ribo-seq, which greatly facilitated the development about related tools for analyzing Ribo-seq data. Therefore, it is badly needed to integrate those tools into one system to simple analysis process about Ribo-seq for researches who not have computer background.
 
 The step to analyse Ribo-seq data is similar with analyzing RNA-seq data, but some steps are different and need to be noted, such as removing contaminative reads from rRNA and tRNA. Therefore, we use a dataset to demonstrate how to analyse Ribo-seq data and what parts need to be noticed.
 
@@ -184,16 +184,16 @@ For some reasons like sequencing error, not all reads have a good quality score.
 >        - {% icon param-text %} *"Maximum length"*: `34`
 >    - In *"Read Modification Options"*:
 >        - {% icon param-text %} *"Quality cutoff"*: `20`
+>        - {% icon param-check %} *Trim Ns*: `Yes`
 >    - In *"Output Options"*:
 >        - {% icon param-check %} *"Report"*: `Yes`
->
 {: .hands_on}
 
 
 
 # Remove contaminants
 
-It's inevitably that sequencing reads of Ribo-seq contain some contaminants from rRNA and tRNA. Hence, we should remove them to elimate inference from rRNA and tRNA prior to alignment.
+It's inevitably that sequencing reads of Ribo-seq contain some contaminants from rRNA and tRNA. Hence, we should remove them to eliminate impacts from rRNA and tRNA prior to alignment.
 
 Firstly, we should get sequence of rRNA and tRNA from public sequence database such as NCBI or UCSC.
 
@@ -243,20 +243,7 @@ Tools used to mapping RNA-seq data are also adapted in alignment of Ribo-seq dat
 >
 {: .hands_on}
 
-## Quality control for mapped reads
 
-How many reads were mapped to the genome successfully? If a very low mapping ratio in one or more samples, we should think about the reason leading to this. Of course the following analysis should be suspended unitl the reason of abnormal mapping ratio was found and solved. Therefore, We should check the quality of mapping firstly.
-
-> ### {% icon hands_on %} Hands-on: Aggregate the HISAT2 summary files with **MultiQC**
->
-> 1. **MultiQC** {% icon tool %} with the following parameters:
->    - In *"Results"*
->      - {% icon param-select %} *"Which tool was used generate logs?"*: `HISAT2`
->      - {% icon param-collection %} *"Output of HISAT2"*: `Mapping summary` (output of **HISAT2** {% icon tool %})
-> 2. Inspect the `Webpage` output from MultiQC
-	{: .hands_on}	
-
-![Mapping results of Hisat2](../../images/raw-to-bam/map_hisat2_se_plot.png "Mapping results of Hisat2")
 
 # Conclusion
 

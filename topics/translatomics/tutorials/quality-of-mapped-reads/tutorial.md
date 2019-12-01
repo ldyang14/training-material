@@ -4,19 +4,16 @@ layout: tutorial_hands_on
 title: Quality of Ribo-seq data
 zenodo_link: ''
 questions:
-- Which biological questions are addressed by the tutorial?
-- Which bioinformatics techniques are important to know for this type of data?
+- How is the quality of the mapping results?
+- What is the triplet nucleotide periodicity?
+- How is the distribution of read lengths?
 objectives:
-- The learning objectives are the goals of the tutorial
-- They will be informed by your audience and will communicate to them and to yourself
-  what you should focus on during the course
-- They are single sentences describing what a learner should be able to do once they
-  have completed the tutorial
-- You can use Bloom's Taxonomy to write effective learning objectives
-time_estimation: 3H
+- Learning quality control metrics of post-alignment data
+- Understand the most important characteristic of Ribo-seq data
+time_estimation: '1h'
 key_points:
-- The take-home messages
-- They will appear at the end of the tutorial
+- You can know how quality of mapping results is through this tutorial
+- There is a significant feature for Ribo-seq data because of the sliding rule of ribosome on RNA
 contributors:
 - ldyang14
 
@@ -28,27 +25,11 @@ contributors:
 
 <!-- This is a comment. -->
 
-General introduction about the topic and then an introduction of the
-tutorial (the questions and the objectives). It is nice also to have a
-scheme to sum up the pipeline used during the tutorial. The idea is to
-give to trainees insight into the content of the tutorial and the (theoretical
-and technical) key concepts they will learn.
+Although we got the corresponding file, the BAM format file, from the mapping results, we have no way of knowing specifics of mapping results. Such as the proportion of mapped reads, read distribution, etc. Not only can we learn the quality of mapping, but also we can make a reasonable explanation based on it for the subsequent abnormal analysis results. Therefore, we should check the quality of mapping results firstly to lay the foundation for the downstream analysis. 
 
-You may want to cite some publications; this can be done by adding citations to the
-bibliography file (`tutorial.bib` file next to your `tutorial.md` file). These citations
-must be in bibtex format. If you have the DOI for the paper you wish to cite, you can
-get the corresponding bibtex entry using [doi2bib.org](https://doi2bib.org).
+There are lots of tools that can be used to check the quality of mapping results, such as Samtools, FastQC, [RSeQC](http://rseqc.sourceforge.net/), Ribo-seQC. You will learn about comprehensive information of your mapping results with the help of these tools. Below, we are going to introduce how to check the quality of mapping results through these tools in the Galaxy. 
 
-With the example you will find in the `tutorial.bib` file, you can add a citation to
-this article here in your tutorial like this:
-{% raw %} `{% cite Batut2018 %}`{% endraw %}.
-This will be rendered like this: {% cite Batut2018 %}, and links to a
-[bibliography section](#bibliography) which will automatically be created at the end of the
-tutorial.
-
-
-**Please follow our
-[tutorial to learn how to fill the Markdown]({{ site.baseurl }}/topics/contributing/tutorials/create-new-tutorial-content/tutorial.html)**
+Here, we use results produced by full data of samples to show information more graphically. 
 
 > ### Agenda
 >
@@ -61,7 +42,119 @@ tutorial.
 
 
 
-## Quality control for strandness
+# General statistics of alignment
+
+## Mapping ratio
+
+How many reads were mapped to the genome successfully? If there is a very low mapping ratio in one or more samples, we should think about the reason leading to this. Of course the following analysis should be suspended until the reason for the abnormal mapping result was found and solved. 
+
+> ### {% icon hands_on %} Hands-on: Aggregate the HISAT2 summary files with **MultiQC**
+>
+> 1. **MultiQC** {% icon tool %} with the following parameters:
+>    - In *"Results"*
+>      - {% icon param-select %} *"Which tool was used generate logs?"*: `HISAT2`
+>      - {% icon param-collection %} *"Output of HISAT2"*: `Mapping summary` (output of **HISAT2** {% icon tool %})
+> 2. Inspect the `Webpage` output from MultiQC 
+		{: .hands_on}	
+
+![Mapping results of Hisat2](../../images/quality-of-mapped-reads/hisat2_mapstats_mqc.png "Mapping results of Hisat2")
+
+We can see that the number of successfully mapped reads is relatively high from the above figure. However, the percentage of multiple mapped reads is very high, and some even exceed 60%. Usually, such a strange proportion is quite abnormal, but this phenomenon is common in the Ribo-seq data due to the relatively short length of reads, which leading to reads easily mapped to repeat regions on the genome. Besides, reads may contain the contaminant from the rRNA, elevating the ratio of unaligned. 
+
+## Other statistics of alignment
+
+We can acquire more detailed information besides mapping ratio from the alignment through `samtools stats`. Then, we aggregate all results into one sheet using MultiQC.
+
+> ### {% icon hands_on %} Hands-on: Calculate QC metric using samtools stats
+>
+> - **Samtools stats** {% icon tool %} with following parameters:
+>   - {% icon param-collection %} *“BAM File”*: `aligned reads (BAM)`
+>   - {% icon param-select %} *"Output"*: `One single summary file`
+> - **MultiQC** {% icon tool %} with following parameters:
+>   - In *"Results"*:
+>     - {% icon param-select %} *"Which tool was used generate logs?"*: `Samtools`
+>       - In *"Samtools output"*:
+>         - {% icon param-select %} *"Type of Samtools output?"*: `stat`
+>           - {% icon param-collection %} *"Samtools flagstat output"*: `Samtools stats on collection xxx`
+>
+{: .hands_on}
+
+The picture below indicates a part of aggregated statistical information about `samtools stats`. Each blue point represents a sample, when the mouse arrow stay on it, the sample name and the number of corresponding mapped reads will be displayed in the top-left corner. 
+
+![Samtools general statistics](../../images/quality-of-mapped-reads/samtools_stats_1.png "Samtools general statistics")
+
+![Samtools alignment metric](../../images/quality-of-mapped-reads/samtools_stats_2.png "Samtools alignment metric")
+
+# Quality control using Ribo-seQC
+
+> ### {% icon hands_on %} Hands-on: Check triplet nucleotide periodicity using Ribo-seQC
+>
+> - Because Ribo-seQC needs twobit format of fasta, we should transfer fasta file to twobit file with faToTwoBit.
+>
+> > ### {% icon hands_on %} Hands-on: Transfer .fasta to .2bit
+> >
+> > - **faToTwoBit** {% icon tool %} with following parameters:
+> >   - {% icon param-file %} *"fasta"*: `hg38_ucsc.fasta`
+> >
+> > > ### {% icon comment %} Comment
+> > >
+> > > If you want to know more about twobit file, you can read [twoBit](https://genome.ucsc.edu/goldenpath/help/twoBit.html).
+> > >
+> > {: .comment}
+> >
+> {: .hands_on}
+>
+> - **Ribo-seQC** {% icon tool %} with following parameters:
+>   - In *"Prepare annotation files"*:
+>     - In *"Inputs"*:
+>       - {% icon param-file %} *"gtf"*: `gencode.v32.annotation.gtf`
+>       - {% icon param-file %} *"fa in twobit format"*: `hg38_ucsc.2bit`
+>       - {% icon param-file %} *"BSgenome"*: `Hsapiens.UCSC.hg38`
+>   - In *"Main analysis"*:
+>     - ~~***TODO*** {% icon param-file %} *"annotation"*: `build-in`~~
+>     - {% icon param-collection %} *"BAM"*: `aligned reads (BAM)`
+>
+{: .hands_on}
+
+You will obtain plenty of information about mapped results when process above was completed. Hence, we introduce some parts of the results to display and check the mapped quality. 
+
+## Distribution of read lengths
+
+Sequencing reads of Ribo-seq data are from fragments of ribosome-enclosed, so distribution of read lengths will concentrate mainly on a specific length. 
+
+
+
+![Distribution of read lengths](../../images/quality-of-mapped-reads/riboseqc1_read_length_distribution.png "Distribution of read lengths")
+
+> ### {% icon question %} Questions
+>
+> Do you think the quality of read length distribution is good or bad? 
+>
+> > ### {% icon solution %} Solution
+> >
+> > The quality of read length distribution is good. Because there is a significant peak at 32 nt and the distribution is ridge type. 
+> >
+> {: .solution}
+>
+{: .question}
+
+## Triplet nucleotide periodicity
+
+As mentioned in the [Introduction to translatomics](), the most significant feature of Ribo-seq data is triplet nucleotide periodicity, in addition, this feature is also the criterion to judge the quality of Ribo-seq data. If we can't observe this feature, we should reflect on reasons leading to these results. For example, whether there is an error during the library preparation. If the triplet nucleotide periodicity can not be observed after we rule out all of the points that we may make an error, we should consider to drop out this data.
+
+![Triplet nucleotide periodicity](../../images/quality-of-mapped-reads/riboseqc3_3nt.png "Triplet nucleotide periodicity")
+
+We can observe triplet nucleotide periodicity from the figure above, so the quality of the sample data is not bad. Therefore, we can execute the subsequent analysis.
+
+# Quality control for strandness
+
+Assuming that your data was from the public database, you may not know the library type of the data. Then, you can infer the strandness of the Ribo-seq data from the mapped files. It is necessary to know this characteristic in some cases, because some parameters of downstream analysis tools will be set according to strandness, such as [featureCounts](http://bioinf.wehi.edu.au/featureCounts/). If the parameter was set by mistake, the statistical results will probably be completely contrary to the data itself.
+
+---
+
+
+
+--------------------------------------------------------------------Cite----------------------------------------------------------------
 
 > ### {% icon hands_on %} Hands-on: Check strandness with **Infer Experiment**
 >
@@ -74,106 +167,22 @@ tutorial.
 >               - {% icon param-select %} *"Type of RSeQC output?"*: `infer_experiment`
 >                   - {% icon param-collection %} *"RSeQC infer_experiment output"*: `Infer Experiment output` (output of **Infer Experiment** {% icon tool %})
 > 3. Inspect the `Webpage` output from MultiQC
-> {: .hands_on}
-
-
-
-# Title for your first section
-
-Give some background about what the trainees will be doing in the section.
-Remember that many people reading your materials will likely be novices,
-so make sure to explain all the relevant concepts.
-
-## Title for a subsection
-Section and subsection titles will be displayed in the tutorial index on the left side of
-the page, so try to make them informative and concise!
-
-# Hands-on Sections
-Below are a series of hand-on boxes, one for each tool in your workflow file.
-Often you may wish to combine several boxes into one or make other adjustments such
-as breaking the tutorial into sections, we encourage you to make such changes as you
-see fit, this is just a starting point :)
-
-Anywhere you find the word "***TODO***", there is something that needs to be changed
-depending on the specifics of your tutorial.
-
-have fun!
-
----
-
-
-
-
-
----
-
-
-
-# Title of the section usually corresponding to a big step in the analysis
-
-It comes first a description of the step: some background and some theory.
-Some image can be added there to support the theory explanation:
-
-![Alternative text](../../images/image_name "Legend of the image")
-
-The idea is to keep the theory description before quite simple to focus more on the practical part.
-
-***TODO***: *Consider adding a detail box to expand the theory*
-
-> ### {% icon details %} More details about the theory
->
-> But to describe more details, it is possible to use the detail boxes which are expandable
->
-{: .details}
-
-A big step can have several subsections or sub steps:
-
-
-## Sub-step with **My Tool**
-
-> ### {% icon hands_on %} Hands-on: Task description
->
-> 1. **My Tool** {% icon tool %} with the following parameters:
->    - {% icon param-file %} *"Input file"*: File
->    - *"Parameter"*: `a value`
->
->    ***TODO***: *Check parameter descriptions*
->
->    ***TODO***: *Consider adding a comment or tip box*
->
->    > ### {% icon comment %} Comment
->    >
->    > A comment about the tool or something else. This box can also be in the main text
->    {: .comment}
->
 {: .hands_on}
 
-***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
-
-> ### {% icon question %} Questions
->
-> 1. Question1?
-> 2. Question2?
->
-> > ### {% icon solution %} Solution
-> >
-> > 1. Answer for question1
-> > 2. Answer for question2
-> >
-> {: .solution}
->
-{: .question}
+---------------------------------------------------------------------Cite----------------------------------------------------------------
 
 
-## Re-arrange
 
-To create the template, each step of the workflow had its own subsection.
+---
 
-***TODO***: *Re-arrange the generated subsections into sections or other subsections.
-Consider merging some hands-on boxes to have a meaningful flow of the analyses*
+
+
+![Strandness](../../images/quality-of-mapped-reads/rseqc_infer_experiment_plot.png "Strandness")
+
+If you want to acquire more information from the BAM file, you can see [this tutorial](https://galaxyproject.github.io/training-material/topics/transcriptomics/tutorials/rna-seq-reads-to-counts/tutorial.html#mapping).
 
 # Conclusion
+
 {:.no_toc}
 
-Sum up the tutorial and the key takeaways here. We encourage adding an overview image of the
-pipeline used.
+You will have a more comprehensive understanding of your data through this tutorial, and you will know how to check the quality of mapped results to find out the reason leading to abnormal indicators.
