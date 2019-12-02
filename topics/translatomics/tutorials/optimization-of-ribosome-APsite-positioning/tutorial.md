@@ -1,17 +1,16 @@
 ---
 layout: tutorial_hands_on
 
-title: Optimization of ribosome A/P-site positioning in Ribo-seq data
+title: Optimization of ribosome A/P-site positioning in Ribo-Seq data
 zenodo_link: ''
 questions:
-- What is the meaning of offset in the Ribo-seq data analysis?
+- What is the meaning of offset in the Ribo-Seq data analysis?
 - Why do we need to correct this offset?
-
 objectives:
-- Learning how to correct the offset in the Ribo-seq data
+- Learning how to determine the offset in the Ribo-Seq data
 time_estimation: '1h'
 key_points:
-- After we corrected the offset in Ribo-seq data, we could then predict ORFs accurately.
+- After we determined the offset in Ribo-Seq data, we could then predict ORFs accurately.
 contributors:
 - ldyang14
 
@@ -23,9 +22,9 @@ contributors:
 
 <!-- This is a comment. -->
 
-The step length is 3 nucleotides when ribosome sliding on the RNA. Therefore, there is an obvious triplet nucleotide periodicity for those data from Ribo-seq. We can not only infer the quality of Ribo-seq data but also determine the actively opening reading frames in the resolution of a single nucleotide. Furthermore, we could explain molecular mechanisms more precisely through the accurate location of actively translated regions. 
+The step length is 3 nucleotides when ribosome sliding on the RNA. Therefore, there is an obvious triplet nucleotide periodicity for those data from Ribo-Seq. We can not only infer the quality of Ribo-Seq data but also determine the actively opening reading frames in the resolution of a single nucleotide. Furthermore, we could explain molecular mechanisms more precisely through the accurate location of actively translated regions. 
 
-However, it leads to that a difficult problem was born in the analysis process for Ribo-seq data. Because there is an offset distance between 5'-end of ribosome-protected fragments and translating P-site. Nevertheless, we should calculate this offset precisely to deduce the really activated translated regions.
+However, it leads to that a difficult problem was born in the analysis process for Ribo-Seq data. Because there is an offset distance between 5'-end of ribosome-protected fragments and translating P-site. Nevertheless, we should calculate this offset precisely to deduce the really activated translated regions.
 
 The reason why offset was produced is shown below. The first nucleotide of reads protected by ribosomes represents the margin by digesting of RNase. However, the real position for starting translating to a peptide is 16th nucleotide as shown in the figure below, which just represents the first nucleotide, not second or third, in the A-site. Thus we called that is in the frame, if 16th nucleotide of other reads of length 28nt is not located in the first position of A-site, we called that is not in the frame. Generally, most of reads are in the frame. Therefore, we should calculate and correct the offset of P/A-site prior to infer ORFs.
 
@@ -42,7 +41,27 @@ Therefore, lots of bioinformatics tools have been emerging to solve this problem
 >
 {: .agenda}
 
-# Calculate the offset
+# Import data
+
+> ### {% icon hands_on %} Hands-on: Data upload
+>
+> 1. Create a new history for this tutorial
+> 2. Import the files from [Zenodo]() or from the shared data library
+>
+>    ```
+>    https://ndownloader.figshare.com/files/20030753?private_link=f07309bbb797f15c8bd7
+>    https://ndownloader.figshare.com/files/20030519?private_link=f07309bbb797f15c8bd7
+>    ```
+>    {% include snippets/import_via_link.md %}
+>    {% include snippets/import_from_data_library.md %}
+>
+> 3. Rename the datasets
+> 4. Check that the datatype
+>
+>    {% include snippets/change_datatype.md datatype="datatypes" %}
+{: .hands_on}
+
+# Calculate the offset using plastid
 
 >### {% icon hands_on %} Hands-on: calculate the offset using plastid
 >
@@ -56,11 +75,51 @@ Therefore, lots of bioinformatics tools have been emerging to solve this problem
 >
 {: .hands_on}
 
-We could get two outputs from psite, one of which graphically shows the distinct offset coupled with read length, and another is a table-separate format file that contains two columns,  one for read length and the other for the corresponding offset. This file could be used as input or a parameter to the subsequent 
+## Step 1: Performing metagene analyses
 
-analysis.
+> ### {% icon hands_on %} Hands-on: metagene analyses
+>
+> 1. **Performing metagene analyses** {% icon tool %} with the following parameters:
+>    
+>    - {% icon param-file %} *"annotation file"*: `gencode.v32.annotation.gtf`
+> - {% icon param-select %} *"Landmark around which to build metagene profile"*: `cds_start` 
+>   
+>     - {% icon param-text %} *"Nucleotides to include upstream of landmark"*: `50` 
+>  - {% icon param-text %} *"Nucleotides to include downstream of landmark"*: `50` 
+>    
+>     - ***TODO*** {% icon param-select %} *"alignment mapping functions"*: `Map read alignment to 5' position` 
+> - {% icon param-file %} *"alignment file in bam format"*: `sub_RPF_KO_1.sorted.q20.bam` 
+>   
+>    > ### {% icon details%} Details
+>    >
+>    > Through this step we can obtain the roi file required in the next step. More details is on the [cookbook of plastid](https://plastid.readthedocs.io/en/latest/examples/metagene.html).
+>    {: .details}
+{: .hands_on}
 
 
+
+## Step 2: Determine P-site offsets for ribosome profiling data
+
+> ### {% icon hands_on %} Hands-on: determine the offsets
+>
+> 1. **Determine P-site offsets for ribosome profiling data** {% icon tool %} with the following parameters:
+>    
+>    - {% icon param-file %} *"roi file generated by Step 1"*: `rois.txt on data 2 and data 1` (output of **Step 1: Performing metagene analyses** {% icon tool %})
+>    - {% icon param-file %} *"alignment bam file"*: `sub_RPF_KO_1.sorted.q20.bam` (Input dataset)
+> - *"min length"*: `25`
+>    - *"min length"*: `34`
+>
+>    ***TODO***: *Check parameter descriptions*
+>
+>    ***TODO***: *Consider adding a comment or tip box*
+>    
+>    > ### {% icon details%} Details
+>    >
+>    > More details is on the [cookbook of plastid](https://plastid.readthedocs.io/en/latest/examples/p_site.html).
+>    {: .details}
+{: .hands_on}
+
+We could get two outputs from psite, one of which graphically shows the distinct offset coupled with read length, and another is a table-separate format file that contains two columns,  one for read length and the other for the corresponding offset. This file could be used as input or a parameter to the subsequent analysis.
 
 <img src="../../images/optimization-of-PAsite/RPF_WT_1_p_offsets.png" alt="Offset of P-site" title="Offset of P-site" style="zoom: 67%;" />
 
