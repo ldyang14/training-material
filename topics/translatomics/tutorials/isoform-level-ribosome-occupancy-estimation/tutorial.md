@@ -15,7 +15,7 @@ key_points:
 - You can learn about the complexity of gene expression due to various isoforms of them through this tutorial, hence the quatification of genes and their isoforms expression accurately is very necessary. 
 contributors:
 - ldyang14
-
+- IceApink
 ---
 
 

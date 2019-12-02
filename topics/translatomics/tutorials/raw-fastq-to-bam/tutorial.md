@@ -17,7 +17,7 @@ key_points:
 - Adapters must be trimmed before mapping reads to the genome
 contributors:
 - ldyang14
-
+- IceApink
 ---
 
 
