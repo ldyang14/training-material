@@ -1,7 +1,7 @@
 ---
 layout: tutorial_hands_on
 
-title: Quality of Ribo-seq data
+title: Quality of Ribo-Seq data
 zenodo_link: ''
 questions:
 - How is the quality of the mapping results?
@@ -9,11 +9,11 @@ questions:
 - How is the distribution of read lengths?
 objectives:
 - Learning quality control metrics of post-alignment data
-- Understand the most important characteristic of Ribo-seq data
+- Understand the most important characteristic of Ribo-Seq data
 time_estimation: '1h'
 key_points:
 - You can know how quality of mapping results is through this tutorial
-- There is a significant feature for Ribo-seq data because of the sliding rule of ribosome on RNA
+- There is a significant feature for Ribo-Seq data because of the sliding rule of ribosome on RNA
 contributors:
 - ldyang14
 
@@ -27,7 +27,7 @@ contributors:
 
 Although we got the corresponding file, the BAM format file, from the mapping results, we have no way of knowing specifics of mapping results. Such as the proportion of mapped reads, read distribution, etc. Not only can we learn the quality of mapping, but also we can make a reasonable explanation based on it for the subsequent abnormal analysis results. Therefore, we should check the quality of mapping results firstly to lay the foundation for the downstream analysis. 
 
-There are lots of tools that can be used to check the quality of mapping results, such as Samtools, FastQC, [RSeQC](http://rseqc.sourceforge.net/), Ribo-seQC. You will learn about comprehensive information of your mapping results with the help of these tools. Below, we are going to introduce how to check the quality of mapping results through these tools in the Galaxy. 
+There are lots of tools that can be used to check the quality of mapping results, such as Samtools, FastQC, [RSeQC](http://rseqc.sourceforge.net/), Ribo-SeqC. You will learn about comprehensive information of your mapping results with the help of these tools. Below, we are going to introduce how to check the quality of mapping results through these tools in the Galaxy. 
 
 Here, we use results produced by full data of samples to show information more graphically. 
 
@@ -59,7 +59,7 @@ How many reads were mapped to the genome successfully? If there is a very low ma
 
 ![Mapping results of Hisat2](../../images/quality-of-mapped-reads/hisat2_mapstats_mqc.png "Mapping results of Hisat2")
 
-We can see that the number of successfully mapped reads is relatively high from the above figure. However, the percentage of multiple mapped reads is very high, and some even exceed 60%. Usually, such a strange proportion is quite abnormal, but this phenomenon is common in the Ribo-seq data due to the relatively short length of reads, which leading to reads easily mapped to repeat regions on the genome. Besides, reads may contain the contaminant from the rRNA, elevating the ratio of unaligned. 
+We can see that the number of successfully mapped reads is relatively high from the above figure. However, the percentage of multiple mapped reads is very high, and some even exceed 60%. Usually, such a strange proportion is quite abnormal, but this phenomenon is common in the Ribo-Seq data due to the relatively short length of reads, which leading to reads easily mapped to repeat regions on the genome. Besides, reads may contain the contaminant from the rRNA, elevating the ratio of unaligned. 
 
 ## Other statistics of alignment
 
@@ -85,11 +85,11 @@ The picture below indicates a part of aggregated statistical information about `
 
 ![Samtools alignment metric](../../images/quality-of-mapped-reads/samtools_stats_2.png "Samtools alignment metric")
 
-# Quality control using Ribo-seQC
+# Quality control using Ribo-SeqC
 
-> ### {% icon hands_on %} Hands-on: Check triplet nucleotide periodicity using Ribo-seQC
+> ### {% icon hands_on %} Hands-on: Check triplet nucleotide periodicity using Ribo-SeqC
 >
-> - Because Ribo-seQC needs twobit format of fasta, we should transfer fasta file to twobit file with faToTwoBit.
+> - Because Ribo-SeqC needs twobit format of fasta, we should transfer fasta file to twobit file with faToTwoBit.
 >
 > > ### {% icon hands_on %} Hands-on: Transfer .fasta to .2bit
 > >
@@ -104,7 +104,7 @@ The picture below indicates a part of aggregated statistical information about `
 > >
 > {: .hands_on}
 >
-> - **Ribo-seQC** {% icon tool %} with following parameters:
+> - **Ribo-SeqC** {% icon tool %} with following parameters:
 >   - In *"Prepare annotation files"*:
 >     - In *"Inputs"*:
 >       - {% icon param-file %} *"gtf"*: `gencode.v32.annotation.gtf`
@@ -120,7 +120,7 @@ You will obtain plenty of information about mapped results when process above wa
 
 ## Distribution of read lengths
 
-Sequencing reads of Ribo-seq data are from fragments of ribosome-enclosed, so distribution of read lengths will concentrate mainly on a specific length. 
+Sequencing reads of Ribo-Seq data are from fragments of ribosome-enclosed, so distribution of read lengths will concentrate mainly on a specific length. 
 
 
 
@@ -140,7 +140,7 @@ Sequencing reads of Ribo-seq data are from fragments of ribosome-enclosed, so di
 
 ## Triplet nucleotide periodicity
 
-As mentioned in the [Introduction to translatomics](), the most significant feature of Ribo-seq data is triplet nucleotide periodicity, in addition, this feature is also the criterion to judge the quality of Ribo-seq data. If we can't observe this feature, we should reflect on reasons leading to these results. For example, whether there is an error during the library preparation. If the triplet nucleotide periodicity can not be observed after we rule out all of the points that we may make an error, we should consider to drop out this data.
+As mentioned in the [Introduction to translatomics](), the most significant feature of Ribo-Seq data is triplet nucleotide periodicity, in addition, this feature is also the criterion to judge the quality of Ribo-Seq data. If we can't observe this feature, we should reflect on reasons leading to these results. For example, whether there is an error during the library preparation. If the triplet nucleotide periodicity can not be observed after we rule out all of the points that we may make an error, we should consider to drop out this data.
 
 ![Triplet nucleotide periodicity](../../images/quality-of-mapped-reads/riboseqc3_3nt.png "Triplet nucleotide periodicity")
 
@@ -148,7 +148,7 @@ We can observe triplet nucleotide periodicity from the figure above, so the qual
 
 # Quality control for strandness
 
-Assuming that your data was from the public database, you may not know the library type of the data. Then, you can infer the strandness of the Ribo-seq data from the mapped files. It is necessary to know this characteristic in some cases, because some parameters of downstream analysis tools will be set according to strandness, such as [featureCounts](http://bioinf.wehi.edu.au/featureCounts/). If the parameter was set by mistake, the statistical results will probably be completely contrary to the data itself.
+Assuming that your data was from the public database, you may not know the library type of the data. Then, you can infer the strandness of the Ribo-Seq data from the mapped files. It is necessary to know this characteristic in some cases, because some parameters of downstream analysis tools will be set according to strandness, such as [featureCounts](http://bioinf.wehi.edu.au/featureCounts/). If the parameter was set by mistake, the statistical results will probably be completely contrary to the data itself.
 
 ---
 

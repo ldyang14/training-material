@@ -1,7 +1,7 @@
 ---
 layout: tutorial_hands_on
 
-title: Normalization of Ribo-seq reads
+title: Normalization of Ribo-Seq reads
 zenodo_link: ''
 questions:
 - Which biological questions are addressed by the tutorial?

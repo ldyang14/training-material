@@ -28,7 +28,7 @@ A gene usually contains many isoforms due to alternative splicing sites. Althoug
 
 ![Gene isofroms](../../images/isoform-level/gene_isoforms.png "Gene isoforms (cited from {% cite aguiar2018bayesian %})")
 
-We can know the precise location of reads through paired-end sequencing, thereby we should reconstruct the actual abundance of a gene and its isoforms in a more refined level with the help of some custom tools. For enhancing the reliability of analysis results, we generally remove ambiguously aligned reads such as multiple mapped reads according to the experience in the process of data analysis for transcriptome. If not the estimation of actual gene abundance would be affected. However, if you checked the mapping ratio of translatomics data, you will be amazed to find that multiple mapped reads occupy a large proportion compared to transcriptomics. The reason is that the length of reads from translatome is usually about 30nt owning to enclose by the ribosomes, thus a large number of reads produced by Ribo-seq will align to repeat regions on the genome or overlapping areas of different gene isoforms. Therefore, we can not migrate the tools and strategies that take in the analysis of transcriptome to apply to the translatome. 
+We can know the precise location of reads through paired-end sequencing, thereby we should reconstruct the actual abundance of a gene and its isoforms in a more refined level with the help of some custom tools. For enhancing the reliability of analysis results, we generally remove ambiguously aligned reads such as multiple mapped reads according to the experience in the process of data analysis for transcriptome. If not the estimation of actual gene abundance would be affected. However, if you checked the mapping ratio of translatomics data, you will be amazed to find that multiple mapped reads occupy a large proportion compared to transcriptomics. The reason is that the length of reads from translatome is usually about 30nt owning to enclose by the ribosomes, thus a large number of reads produced by Ribo-Seq will align to repeat regions on the genome or overlapping areas of different gene isoforms. Therefore, we can not migrate the tools and strategies that take in the analysis of transcriptome to apply to the translatome. 
 
 Therefore, a series of tools have been developed for quantification of genes and its isoforms abundance more accurately at the translatome level, for now, thus to explore gene function and molecular mechanisms more precisely. 
 
@@ -64,7 +64,7 @@ Therefore, a series of tools have been developed for quantification of genes and
 > - Run {% icon tool %} **Ribomap** with following parameters:
 >   - {% icon param-collection %} *"Input RNA-seq read fastq.gz file for transcript abundance estimation"*: `RNA aligned reads (BAM)` 
 >   - {% icon param-collection %} *"Input ribosome profiling (riboseq) read fastq.gz file"*: `RPF aligned reads (BAM)` 
->   - {% icon param-text %} *"The linker sequence attached to the 5' end of the ribo-seq reads."*:  `CTGTAGGCACCATCAAT`  
+>   - {% icon param-text %} *"The linker sequence attached to the 5' end of the Ribo-Seq reads."*:  `CTGTAGGCACCATCAAT`  
 >
 {: .hands_on}
 

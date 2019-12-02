@@ -9,7 +9,7 @@ objectives:
 - Learning the method to identify RNA fragments from non-ribosomal protein-RNA complexes
 time_estimation: '1H'
 key_points:
-- RNA fragments from non-ribosomal protein-RNA complexes may have potential functions in the cell, but we need to remove them when processing Ribo-seq data analysis.
+- RNA fragments from non-ribosomal protein-RNA complexes may have potential functions in the cell, but we need to remove them when processing Ribo-Seq data analysis.
 contributors: 
 - ldyang14
 

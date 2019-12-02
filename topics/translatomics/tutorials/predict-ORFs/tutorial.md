@@ -1,7 +1,7 @@
 ---
 layout: tutorial_hands_on
 
-title: Detection of actively translated ORFs using Ribo-seq data
+title: Detection of actively translated ORFs using Ribo-Seq data
 zenodo_link: ''
 questions:
 - How many kinds of open reading frames (ORFs) are in the cell?

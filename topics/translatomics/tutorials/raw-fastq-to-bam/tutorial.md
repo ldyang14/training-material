@@ -1,19 +1,19 @@
 ---
 layout: tutorial_hands_on
 
-title: Raw FastQ file of Ribo-seq to aligned BAM file
+title: Raw FastQ file of Ribo-Seq to aligned BAM file
 zenodo_link: 'https://figshare.com/s/b746ccf9f27f4135aa1d'
 questions:
-- How to convert raw fastq data of Ribo-seq into aligned BAM file?
-- What parts need to be noticed in processing Ribo-seq data?
+- How to convert raw fastq data of Ribo-Seq into aligned BAM file?
+- What parts need to be noticed in processing Ribo-Seq data?
 objectives:
-- Learn basic steps to process raw Ribo-seq data
-- Understand the difference between Ribo-seq data and RNA-seq data
+- Learn basic steps to process raw Ribo-Seq data
+- Understand the difference between Ribo-Seq data and RNA-seq data
 - Learn the method to remove rRNA and tRNA in the raw fastq file
 time_estimation: '2h'
 key_points:
-- Reads of Ribo-seq come from ribosome-protected RNA fragments
-- Library type of Ribo-seq usually is single-end
+- Reads of Ribo-Seq come from ribosome-protected RNA fragments
+- Library type of Ribo-Seq usually is single-end
 - Adapters must be trimmed before mapping reads to the genome
 contributors:
 - ldyang14
@@ -26,9 +26,9 @@ contributors:
 
 <!-- This is a comment. -->
 
-Ribosome profiling (Ribo-seq) is a high throughput sequencing technology to detect the gene expression through sequencing ribosome-protected fragments. Although we discovered a large amount of gene expression and regulation through RNA-seq, there are still numerous aspects about gene regulation that could not be explained by RNA-seq, such as regulatory mechanism of translation. Then, the emergency of a new technology called Ribo-seq fills the technology gap for the gene translational researches. More and more studies proved the importance and accuracy about Ribo-seq, which greatly facilitated the development about related tools for analyzing Ribo-seq data. Therefore, it is badly needed to integrate those tools into one system to simple analysis process about Ribo-seq for researches who not have computer background.
+Ribosome profiling (Ribo-Seq) is a high throughput sequencing technology to detect the gene expression through sequencing ribosome-protected fragments. Although we discovered a large amount of gene expression and regulation through RNA-seq, there are still numerous aspects about gene regulation that could not be explained by RNA-seq, such as regulatory mechanism of translation. Then, the emergency of a new technology called Ribo-Seq fills the technology gap for the gene translational researches. More and more studies proved the importance and accuracy about Ribo-Seq, which greatly facilitated the development about related tools for analyzing Ribo-Seq data. Therefore, it is badly needed to integrate those tools into one system to simple analysis process about Ribo-Seq for researches who not have computer background.
 
-The step to analyse Ribo-seq data is similar with analyzing RNA-seq data, but some steps are different and need to be noted, such as removing contaminative reads from rRNA and tRNA. Therefore, we use a dataset to demonstrate how to analyse Ribo-seq data and what parts need to be noticed.
+The step to analyse Ribo-Seq data is similar with analyzing RNA-seq data, but some steps are different and need to be noted, such as removing contaminative reads from rRNA and tRNA. Therefore, we use a dataset to demonstrate how to analyse Ribo-Seq data and what parts need to be noticed.
 
 ## The dataset
 
@@ -59,14 +59,14 @@ Before importing the data into the Galaxy, you had better to learn some rules an
 
 ### FastQ file
 
-FastQ files, produced by the sequencing, contain sequences and quality information of reads. It is the basic for setting about Ribo-seq data analysis. The data is usually suffixed with '.fastq' or '.fq', if it is compression format, it will be attached ".gz" to the suffix. 
+FastQ files, produced by the sequencing, contain sequences and quality information of reads. It is the basic for setting about Ribo-Seq data analysis. The data is usually suffixed with '.fastq' or '.fq', if it is compression format, it will be attached ".gz" to the suffix. 
 
 > ### {% icon details %} What is the FastQ file?
 >
 > If you want to know more information about FASTQ, see the [Quality Control tutorial]({{ site.baseurl }}{% link topics/sequence-analysis/tutorials/quality-control/tutorial.md %})
 {: .details}
 
-2. Import Ribo-seq raw data via links
+2. Import Ribo-Seq raw data via links
 
 {% include snippets/import_via_link.md %}
 
@@ -131,7 +131,7 @@ You can also get the annotaion file from [UCSC Table Browser](https://genome.ucs
 
 # Quality control for raw reads
 
-What is the quality of our data prepared to analyze? It is an important question to us because a good quality of Ribo-seq data  establishes the foundation to analyze accurately for the following steps. Not only that, results from quality control could also help us to understand the characteristics of our data more comprehensively. 
+What is the quality of our data prepared to analyze? It is an important question to us because a good quality of Ribo-Seq data  establishes the foundation to analyze accurately for the following steps. Not only that, results from quality control could also help us to understand the characteristics of our data more comprehensively. 
 
 > ### {% icon hands_on %} Hands-on: Check raw reads with **FastQC**
 >
@@ -161,7 +161,7 @@ Results from FastQC could tell us the information of each FASTQ file. However, w
 
 The adapter is the sequence ligated to the end of the read during library preparation. If the read of sequencing machine is greater than insert fragments of DNA, the adapter on the 3'-end will be sequenced and it will be appeared in the fastq file. Because sequences of adapters does not belong to the genome, the mapping ratio will be affected if you don't trimming adapters. Therefore, we should trim them using related tools such as cutadapt before mapping reads to the reference sequence.
 
-As mentioned above, the length of ribosome-protected fragments usually is about 30 nt. However, the sequencing read length is usually longer than it. Therefore, the library layout of Ribo-seq is commonly single-end and it's necessary to trim the adapter to lay the foundation for the next steps.
+As mentioned above, the length of ribosome-protected fragments usually is about 30 nt. However, the sequencing read length is usually longer than it. Therefore, the library layout of Ribo-Seq is commonly single-end and it's necessary to trim the adapter to lay the foundation for the next steps.
 
 Generally, if the data is your own, you can get the accurate adapters from the sequencing company's report. Another case is that the data from the public database such as [SRA](https://www.ncbi.nlm.nih.gov/sra), you may acquire adapters from the corresponding article or infer from the QC report. Here, the adapter in this sample is `CTGTAGGCACCATCAAT`.
 
@@ -193,7 +193,7 @@ For some reasons like sequencing error, not all reads have a good quality score.
 
 # Remove contaminants
 
-It's inevitably that sequencing reads of Ribo-seq contain some contaminants from rRNA and tRNA. Hence, we should remove them to eliminate impacts from rRNA and tRNA prior to alignment.
+It's inevitably that sequencing reads of Ribo-Seq contain some contaminants from rRNA and tRNA. Hence, we should remove them to eliminate impacts from rRNA and tRNA prior to alignment.
 
 Firstly, we should get sequence of rRNA and tRNA from public sequence database such as NCBI or UCSC.
 
@@ -213,7 +213,7 @@ Then, the collection contained unmapped fastq file will be used to analysis belo
 
 # Alignment
 
-Tools used to mapping RNA-seq data are also adapted in alignment of Ribo-seq data, such as HISAT2, STAR, TopHat2. Through mapping reads against to the reference sequences, we can know which genes are expressed and how the expression of them. Following gene functional analysis, we could learn more about what effects are caused by the experiment treatment. Because the length of ribosome-protected fragments is commonly about ~30 nt, the most common library type is single-end. 
+Tools used to mapping RNA-seq data are also adapted in alignment of Ribo-Seq data, such as HISAT2, STAR, TopHat2. Through mapping reads against to the reference sequences, we can know which genes are expressed and how the expression of them. Following gene functional analysis, we could learn more about what effects are caused by the experiment treatment. Because the length of ribosome-protected fragments is commonly about ~30 nt, the most common library type is single-end. 
 
 > ### {% icon hands_on %} Hands-on: Mapping with Hisat2
 >
@@ -249,5 +249,5 @@ Tools used to mapping RNA-seq data are also adapted in alignment of Ribo-seq dat
 
 {:.no_toc}
 
-In conclusion, we introduce the basic process and some notable points for preprocessing Ribo-seq data. We can get the BAM file to carry out subsequent analysis through this tutorial.
+In conclusion, we introduce the basic process and some notable points for preprocessing Ribo-Seq data. We can get the BAM file to carry out subsequent analysis through this tutorial.
 
