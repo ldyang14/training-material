@@ -14,7 +14,6 @@ key_points:
 - After we corrected the offset in Ribo-seq data, we could then predict ORFs accurately.
 contributors:
 - ldyang14
-
 ---
 
 
