@@ -7,8 +7,9 @@ questions:
 - What is the meaning of offset in the Ribo-Seq data analysis?
 - Why do we need to correct this offset?
 objectives:
-- Learning how to correct the offset in the Ribo-Seq data
-time_estimation: '1h'
+- Learn the background about Ribo-Seq data
+- Correct the offset for mCapping results of Ribo-Seq data 
+time_estimation: '1H'
 key_points:
 - After we corrected the offset in Ribo-Seq data, we could then predict ORFs accurately.
 contributors:
@@ -22,11 +23,11 @@ contributors:
 
 <!-- This is a comment. -->
 
-The step length is 3 nucleotides when ribosome sliding on the RNA. Therefore, there is an obvious triplet nucleotide periodicity for those data from Ribo-Seq. We can not only infer the quality of Ribo-Seq data but also determine the actively opening reading frames in the resolution of a single nucleotide. Furthermore, we could explain molecular mechanisms more precisely through the accurate location of actively translated regions. 
+The step length is 3 nucleotides when ribosome sliding on the mRNA. Therefore, there is an obvious triplet        nucleotide periodicity from mapped results of Ribo-Seq data. Accordingly, we can not only infer the quality of Ribo-Seq data but also determine the actively opening reading frames in the resolution of a single nucleotide. Furthermore, we could explain molecular mechanisms more precisely through the accurate location of actively translated regions. 
 
-However, it leads to that a difficult problem was born in the analysis process for Ribo-Seq data. Because there is an offset distance between 5'-end of ribosome-protected fragments and translating P-site. Nevertheless, we should calculate this offset precisely to deduce the really activated translated regions.
+However, it leads to that a difficult problem was born in the analysis process for Ribo-Seq data. Because there is an offset distance between 5'-end of ribosome-protected fragments and translating P-site. Therefore, we should calculate this offset precisely to deduce the really activated translated regions.
 
-The reason why offset was produced is shown below. The first nucleotide of reads protected by ribosomes represents the margin by digesting of RNase. However, the real position for starting translating to a peptide is 16th nucleotide as shown in the figure below, which just represents the first nucleotide, not second or third, in the A-site. Thus we called that is in the frame, if 16th nucleotide of other reads of length 28nt is not located in the first position of A-site, we called that is not in the frame. Generally, most of reads are in the frame. Therefore, we should calculate and correct the offset of P/A-site prior to infer ORFs.
+The reason why offset was produced is shown below. The first nucleotide of reads protected by ribosomes represents the margin by digesting of RNase or MNase. However, the real position for starting translating to a peptide is 16th nucleotide as shown in the figure below, which just represents the first nucleotide, not second or third, in the A-site. Thus we called that is in the frame, if 16th nucleotide of other reads of length 28nt is not located in the first position of A-site, we called that is not in the frame. Generally, most of reads are in the frame. Therefore, we should calculate and correct the offset of P/A-site prior to infer ORFs.
 
  ![Offset of Asite](../../images/optimization-of-PAsite/A-site.png "Offset of Asite cited from ({% cite liu2016prediction %})")
 
@@ -40,6 +41,8 @@ Therefore, lots of bioinformatics tools have been emerging to solve this problem
 > {:toc}
 >
 {: .agenda}
+
+
 
 # Calculate the offset
 
