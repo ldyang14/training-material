@@ -61,19 +61,7 @@ Therefore, lots of bioinformatics tools have been emerging to solve this problem
 >    {% include snippets/change_datatype.md datatype="datatypes" %}
 {: .hands_on}
 
-# Calculate the offset using plastid
 
->### {% icon hands_on %} Hands-on: calculate the offset using plastid
->
->- {% icon tool %} plastid with following parameters:
->  - {% icon param-file %} *"annotation file"*: `gencode.v32.annotation.gtf` 
->  - {% icon param-select %} *"Landmark around which to build metagene profile"*: `cds_start` 
->  - {% icon param-text %} *"Nucleotides to include upstream of landmark"*: `50` 
->  - {% icon param-text %} *"Nucleotides to include downstream of landmark"*: `50` 
->  - ***TODO*** {% icon param-select %} *"alignment mapping functions"*: `Map read alignment to 5' position` 
->  - {% icon param-collection %} *""*: `aligned reads (BAM)` 
->
-{: .hands_on}
 
 ## Step 1: Performing metagene analyses
 
