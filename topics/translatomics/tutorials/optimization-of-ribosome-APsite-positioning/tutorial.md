@@ -13,7 +13,6 @@ key_points:
 - After we determined the offset in Ribo-Seq data, we could then predict ORFs accurately.
 contributors:
 - ldyang14
-
 ---
 
 
