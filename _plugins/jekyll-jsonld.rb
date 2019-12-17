@@ -18,7 +18,11 @@ module Jekyll
         "@type": "CreativeWork",
         "name": "#{topic['title']}",
         "description": "#{topic['summary']}",
+<<<<<<< HEAD
         "url": "#{site['url']}#{site['baseurl']}/topics/#{topic['name']}/"
+=======
+        "url": "https://training.galaxyproject.org/#{site['baseurl']}/topics/#{topic['name']}/"
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
       }
 
       # aggregate everything
@@ -149,6 +153,7 @@ module Jekyll
       #info depending if tutorial, hands-on or slide level
       parts = []
       mentions = []
+<<<<<<< HEAD
       description = [material['title']]
       if material['type'] == 'tutorial' then
         data['courseCode'] = "#{material['topic_name']} / #{material['tutorial_name']}"
@@ -183,6 +188,18 @@ module Jekyll
         data['learningResourceType'] = "slides"
         data['name'] = "Introduction to '#{topic['title']}'"
         data['url'] = "#{site['url']}#{site['baseurl']}#{material['url']}"
+=======
+      description = []
+
+      data['isPartOf'] = topic_desc
+
+      if material['type'] == 'introduction' then
+        data['courseCode'] = "#{material['topic_name']} / introduction / #{material['name']}"
+        data['learningResourceType'] = "slides"
+        data['name'] = "Introduction to '#{topic['title']}'"
+        data['url'] = "https://training.galaxyproject.org/#{site['baseurl']}#{material['url']}"
+        description.push("Slides for #{topic['title']}")
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
       elsif material['name'] == 'tutorial.md' or material['name'] == 'slides.html' then
         if material['name'] == 'tutorial.md' then
           data['courseCode'] = "#{material['topic_name']} / #{material['tutorial_name']} / hands-on"
@@ -193,6 +210,7 @@ module Jekyll
           data['learningResourceType'] = "slides"
           data['name'] = "Slides for '#{material['title']}' tutorial"
         end
+<<<<<<< HEAD
         data['isPartOf'] = {
           "@type": "Course",
           "name": "#{material['title']}",
@@ -202,12 +220,21 @@ module Jekyll
           "provider": gtn
         }
         data['url'] = "#{site['url']}#{site['baseurl']}#{material['url']}"
+=======
+        data['url'] = "https://training.galaxyproject.org/#{site['baseurl']}#{material['url']}"
+
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
         # Time required
         if material.key?('time_estimation') and not material['time_estimation'].nil? then
           data['timeRequired'] = "PT#{material['time_estimation'].upcase}"
         end
+<<<<<<< HEAD
         # Description with questions, objectives and keypoints
 
+=======
+
+        # Description with questions, objectives and keypoints
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
         if material.key?('questions') and not material['questions'].nil? and material['questions'].length > 0 then
           questions = material['questions'].join("\n - ")
           description.push("The questions this #{material['type']} addresses are:\n - #{questions}\n\n")
@@ -257,7 +284,11 @@ module Jekyll
                       if page['name'] == 'slides.html' then
                         coursePrerequisites.push({
                           "@type": "Course",
+<<<<<<< HEAD
                           "url": "#{site['url']}#{site['baseurl']}/topics/#{req['topic_name']}/tutorials/#{tuto}/slides.html",
+=======
+                          "url": "https://training.galaxyproject.org/#{site['baseurl']}/topics/#{req['topic_name']}/tutorials/#{tuto}/slides.html",
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
                           "name": "#{page['title']}",
                           "description": "Slides for '#{page['title']}' tutorial",
                           "learningResourceType": "slides",
@@ -277,7 +308,11 @@ module Jekyll
                       if page['name'] == 'tutorial.md' then
                         coursePrerequisites.push({
                           "@type": "Course",
+<<<<<<< HEAD
                           "url": "#{site['url']}#{site['baseurl']}/topics/#{req['topic_name']}/tutorials/#{tuto}/tutorial.html",
+=======
+                          "url": "https://training.galaxyproject.org/#{site['baseurl']}/topics/#{req['topic_name']}/tutorials/#{tuto}/tutorial.html",
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
                           "name": "#{page['title']}",
                           "description": "Hands-on for '#{page['title']}' tutorial",
                           "learningResourceType": "hands-on tutorial",
@@ -292,7 +327,11 @@ module Jekyll
             else
               coursePrerequisites.push({
                 "@type": "CreativeWork",
+<<<<<<< HEAD
                 "url": "#{site['url']}#{site['baseurl']}/topics/#{req['topic_name']}/",
+=======
+                "url": "https://training.galaxyproject.org/#{site['baseurl']}/topics/#{req['topic_name']}/",
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
                 "name": "#{site['data'][req['topic_name']]['title']}",
                 "description": "#{site['data'][req['topic_name']]['title']}",
                 "provider": gtn
@@ -311,6 +350,7 @@ module Jekyll
         data['coursePrerequisites'] = coursePrerequisites
       end
 
+<<<<<<< HEAD
       #Interactive tour
       if material.key?('galaxy_tour') then
         parts.push(material['galaxy_tour'].map{ |x|
@@ -337,6 +377,10 @@ module Jekyll
       end
       data['mentions'] = mentions
 
+=======
+      data['hasPart'] = parts
+
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
       # Add contributors/authors
       if material.key?('contributors') then
         contributors = material['contributors'].map{ |x|

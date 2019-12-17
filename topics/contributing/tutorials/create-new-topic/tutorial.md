@@ -63,7 +63,13 @@ The templates for the tutorials are different from the other pages to help users
 
 The content of each tutorial is generated with [Jekyll](https://jekyllrb.com/) from a Markdown file and some metadata (e.g. the requirements, the Zenodo link, the questions) defined inside the metadata of the related topic.
 
+<<<<<<< HEAD
 > Want to contribute to a tutorial? Check out [our training materials about that]({{ site.baseurl }}{% link topics/contributing/index.md %}).
+=======
+> ### {% icon comment %} Contributing
+> Want to contribute to a tutorial? Check out [our training materials about that]({{ site.baseurl }}{% link topics/contributing/index.md %}).
+{: .comment}
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 
 Sometimes, an hands-on tutorial is not the most appropriate format for a tutorial and slides are better. The content must be then added in the `slides` directory.
 
@@ -133,7 +139,13 @@ Once the topic name has been chosen, we can create it.
 > 4. Check that a YAML file with your topic name has been generated in `metadata` folder
 > 5. Make sure that Jekyll is running
 >
+<<<<<<< HEAD
 >    > Want to learn how to start Jekyll? [Check out our tutorial to serve the website locally]({{ site.baseurl }}{% link topics/contributing/tutorials/running-jekyll/tutorial.md %})
+=======
+>    > ### {% icon comment %} Jekyll
+>    > Want to learn how to start Jekyll? [Check out our tutorial to serve the website locally]({{ site.baseurl }}{% link topics/contributing/tutorials/running-jekyll/tutorial.md %})
+>    {: .comment}
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 >
 > 6. Check if the topic has been correctly added at [http://localhost:4000/training-material/](http://localhost:4000/training-material/)
 >
@@ -182,7 +194,13 @@ Several metadata are defined in `metadata.yaml` file in your topic folder to :
 > 2. Fill the correct metadata of the topic
 > 3. Make sure that Jekyll is running
 >
+<<<<<<< HEAD
 >    > Want to learn how to start Jekyll? [Check out our tutorial to serve the website locally]({{ site.baseurl }}{% link topics/contributing/tutorials/running-jekyll/tutorial.md %})
+=======
+>    > ### {% icon comment %} Jekyll
+>    > Want to learn how to start Jekyll? [Check out our tutorial to serve the website locally]({{ site.baseurl }}{% link topics/contributing/tutorials/running-jekyll/tutorial.md %})
+>    {: .comment}
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 >
 > 4. Check how it changes the local website
 >

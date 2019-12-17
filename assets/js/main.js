@@ -7,7 +7,11 @@ $(".solution>h3,.details>h3,.tip>h3").click(function(event) {
 $(".solution,.details,.tip").each(function() {
     $(">*:not(h3)", this).toggle();
     var h3 = $("h3:first", this);
+<<<<<<< HEAD
     h3.append("<span class='fold-unfold fa fa-plus-square'></span>");
+=======
+    h3.append("<span role='button' class='fold-unfold fa fa-plus-square'></span>");
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 });
 
 (function (window, document) {

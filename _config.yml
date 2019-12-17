@@ -26,7 +26,11 @@ logo: "assets/images/GTN.png"
 small_logo: "assets/images/GTN-60px.png"
 help_url: https://help.galaxyproject.org/
 other_languages: "fr, ja, es, pt, ar"
+<<<<<<< HEAD
 words_to_not_translate: 
+=======
+words_to_not_translate:
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 - bed
 - dna
 - expression
@@ -124,6 +128,10 @@ icon-tag:
   galaxy-save: fa fa-save
   galaxy-scratchbook: fa fa-th
   galaxy-dropdown: fa-caret-down
+<<<<<<< HEAD
+=======
+  workflow-runtime-toggle: fa-caret-square-o-up
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
   galaxy-wf-connection: fa-arrows-h
   galaxy-wf-new: fa-plus
   search: fa fa-search

@@ -14,6 +14,7 @@ key_points:
 contributors:
 - ldyang14
 - IceApink
+
 ---
 
 # Introduction
@@ -22,9 +23,9 @@ contributors:
 
 <!-- This is a comment. -->
 
-It is usually not the linear that changes of gene abundance from transcriptional level to translational level account for more sophisticated regulatory mechanisms at the post-transcription and translation process, for example, folding of mRNA, involving big molecules like ribosomes. Therefore, this nonlinear changes of gene abundance at different omics level is a piece of crucial evidence to explore the cellular physiological process and molecular functions. 
+It is usually not the linear that changes of gene abundance from transcriptional level to translational level account for more sophisticated regulatory mechanisms at the post-transcription and translation process, for example, folding of mRNA, involving big molecules like ribosomes. Therefore, this nonlinear changes of gene abundance at different omics level is a piece of crucial evidence to explore the cellular physiological process and molecular functions.
 
-In the past, we could not catch a glimpse of physiological changes of the gene at the translational level limited by the technology. Currently, the appearance of ribosome profiling provides us an unprecedented opportunity to study translation, a key component in the central dogma. Moreover, in combination with transcriptomics data, we can inquiry about the change trends while gene information transmitted to proteins from transcripts, thus to study molecular functions for designing drug targets accurately. 
+In the past, we could not catch a glimpse of physiological changes of the gene at the translational level limited by the technology. Currently, the appearance of ribosome profiling provides us an unprecedented opportunity to study translation, a key component in the central dogma. Moreover, in combination with transcriptomics data, we can inquiry about the change trends while gene information transmitted to proteins from transcripts, thus to study molecular functions for designing drug targets accurately.
 
 Therefore, a few tools and strategies were developed for exploring changes in gene abundance at the translational level. For instance, translational efficiency (TE) is a common analysis method in the translatomics, which can reflect the direction and degree of gene changes from transcripts to proteins. These changes usually are divided into three categories: one is called "forward", which represents that gene abundance at the translational level maintains its fluctuation at the transcriptional level, just like what black points represent below; another is called "reinforce", which represents gene abundance occurred obviously regulation only at the translational level; the last is called "buffer", which is that gene abundance have differences at the transcriptional level, however, this differences was contacted at the translational level. ![Translational efficiency](../../images/translational-efficiency/translational-efficiency.png "Translational efficiency (cited from {% cite schafer2015translational %})")
 
@@ -49,7 +50,7 @@ Therefore, a few tools and strategies were developed for exploring changes in ge
 >
 >    {% include snippets/create_new_history.md %}
 >
-> 2. Import the files from [Figshare](https://figshare.com/s/651afb45fbb5fc9d7010) 
+> 2. Import the files from [Figshare](https://figshare.com/s/651afb45fbb5fc9d7010)
 >
 >    ```
 >    https://ndownloader.figshare.com/files/20026487?private_link=651afb45fbb5fc9d7010
@@ -68,9 +69,9 @@ Therefore, a few tools and strategies were developed for exploring changes in ge
 > ### {% icon hands_on %} Hands-on:  Calculate translational efficiency using RiboDiff
 >
 > - Run {% icon tool %} **Ribodiff** with following  parameters:
->   - {% icon param-collection %} *"Sequencing read count file"*: `Count table` 
->   - {% icon param-collection %} *"Experiment outline"*: `Sample Information` 
->   - {% icon param-check %} *"Visualizing the analysis report"*: `Yes` 
+>   - {% icon param-collection %} *"Sequencing read count file"*: `Count table`
+>   - {% icon param-collection %} *"Experiment outline"*: `Sample Information`
+>   - {% icon param-check %} *"Visualizing the analysis report"*: `Yes`
 >
 {: .hands_on}
 
@@ -93,4 +94,4 @@ Another result is a histogram figure of translational efficiency change, through
 
 {:.no_toc}
 
-If we just analyzed the data from ribosome profiling, we could not infer whether the changes of gene expression was derived from transcription or translation or both of them. However, we can address this question through calculating translational efficiency, thus we might make a reasonable explaination for mechanisms of gene regulation more precisely. 
+If we just analyzed the data from ribosome profiling, we could not infer whether the changes of gene expression was derived from transcription or translation or both of them. However, we can address this question through calculating translational efficiency, thus we might make a reasonable explaination for mechanisms of gene regulation more precisely.

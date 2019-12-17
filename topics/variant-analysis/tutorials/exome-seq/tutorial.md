@@ -457,7 +457,11 @@ the dedicated [Mapping tutorial]({{ site.baseurl }}{% link topics/sequence-analy
 >        - *"Read group identifier (ID)"*: `001`
 >      - *"Auto-assign"*: `No`
 >        - *"Read group sample name (SM)"*: `mother`
+<<<<<<< HEAD
 > 
+=======
+>
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 > 3. **Map with BWA-MEM** {% icon tool %} to map the reads from the **child** sample to the reference genome **using the same parameters as before** except
 >
 >    - *"Single or Paired-end reads"*: `Paired`
@@ -1174,6 +1178,7 @@ you think could plausibly be causative for the child's disease.
 >
 {: .hands_on}
 
+<<<<<<< HEAD
 > > ### {% icon question %} Question
 > >
 > > From the GEMINI reports you generated, can you identify the most likely
@@ -1190,6 +1195,24 @@ you think could plausibly be causative for the child's disease.
 > > - [Identifying recessive gene candidates with GEMINI](https://s3.amazonaws.com/gemini-tutorials/Gemini-Recessive-Tutorial.pdf)
 > > - [Identifying dominant gene candidates with GEMINI](https://s3.amazonaws.com/gemini-tutorials/Gemini-Dominant-Tutorial.pdf)
 > {: .details}
+=======
+> ### {% icon question %} Question
+>
+> From the GEMINI reports you generated, can you identify the most likely
+> candidate variant responsible for the child's disease?
+{: .question}
+
+> ### {% icon details %} More GEMINI usage examples
+>
+> While only demonstrating command line use of GEMINI, the following tutorial
+> slides may give you additional ideas for variant queries and filters:
+>
+> - [Introduction to GEMINI](https://s3.amazonaws.com/gemini-tutorials/Intro-To-Gemini.pdf)
+> - [Identifying *de novo* mutations with GEMINI](https://s3.amazonaws.com/gemini-tutorials/Gemini-DeNovo-Tutorial.pdf)
+> - [Identifying recessive gene candidates with GEMINI](https://s3.amazonaws.com/gemini-tutorials/Gemini-Recessive-Tutorial.pdf)
+> - [Identifying dominant gene candidates with GEMINI](https://s3.amazonaws.com/gemini-tutorials/Gemini-Dominant-Tutorial.pdf)
+{: .details}
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 
 # Conclusion
 {:.no_toc}

@@ -1,8 +1,11 @@
 RNA-Seq data analysis
 ======================
 
+<<<<<<< HEAD
 TEST191012
 
+=======
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 RNA-sequencing is a method used to reveal the presence and quantity of RNA in a biological sample at a given moment in time. Here, we propose some materials to learn how to analyze RNA-seq data.
 
 # Slides
@@ -19,7 +22,11 @@ A tutorial with hands-on is available for this topic:
 
 ## Input datasets
 
+<<<<<<< HEAD
 For de novo tutorial, data is avaialble at [`Zenodo`](https://zenodo.org/record/254485).
+=======
+For de novo tutorial, data is available at [`Zenodo`](https://zenodo.org/record/254485).
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 
 For ref-based tutorial, the original data is available at NCBI Gene Expression Omnibus (GEO) under accession number [GSE18508](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE18508). We will look at the 7 first samples (3 treated samples with Pasilla (PS) gene depletion: [GSM461179](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM461179), [GSM461180](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM461180), [GSM461181](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM4611810) and 4 untreated samples: [GSM461176](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM461176), [GSM461177](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM461177), [GSM461178](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM461178), [GSM461182](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSM461182)).
 

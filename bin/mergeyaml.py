@@ -39,11 +39,19 @@ if __name__ == '__main__':
     merged = {}
 
     if args.nondocker:
+<<<<<<< HEAD
         for filename in glob.glob('./topics/*/tutorials/*/data-library.yaml'):
             a = yaml.safe_load(open(filename))
             extend_dict(merged, a)
     else:
         for filename in glob.iglob('./**/data-library.yaml'):
+=======
+        for filename in sorted(glob.glob('./topics/*/tutorials/*/data-library.yaml')):
+            a = yaml.safe_load(open(filename))
+            extend_dict(merged, a)
+    else:
+        for filename in sorted(glob.iglob('./**/data-library.yaml')):
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
             a = yaml.safe_load(open(filename))
             extend_dict(merged, a)
 

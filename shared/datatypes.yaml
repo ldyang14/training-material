@@ -35,7 +35,11 @@ mgf: mgf
 mzml: mzml
 mzXML: mzxml
 obo: obo
+<<<<<<< HEAD
 raw: raw
+=======
+raw: thermo.raw
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 sqlite: sqlite
 tabular: tabular
 tax: mothur.seq.taxonomy

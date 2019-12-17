@@ -51,6 +51,13 @@ andrewjpage:
 
 annasyme:
     name: Anna Syme
+<<<<<<< HEAD
+=======
+    
+annefou:
+    name: Anne Fouilloux
+    twitter: AnneFouilloux
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 
 anuprulez:
     name: Anup Kumar
@@ -75,6 +82,12 @@ bebatut:
     linkedin: berenicebatut
     gitter: bebatut
     orcid: 0000-0001-9852-1987
+
+bedroesb:
+    name: Bert Droesbeke
+    email: bedro@psb.ugent.be
+    gitter: bedroesb
+    orcid: 0000-0003-0522-5674
 
 bernt-matthias:
     name: Matthias Bernt
@@ -106,9 +119,12 @@ cecilecanlet:
 charitylaw:
     name: Charity Law
 
+<<<<<<< HEAD
 chrisbarnettster:
     name: Chris Barnett
 
+=======
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 cicozhang:
     name: Chao (Cico) Zhang
     maintainer_contact: https://hi-it.org
@@ -130,6 +146,13 @@ combesf:
 cganote:
     name: Carrie Ganote
 
+<<<<<<< HEAD
+=======
+chrisbarnettster:
+    name: Christopher Barnettster
+    gitter: chrisbarnettster
+    
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 daltis20012009:
     name: Krzys Poterlowicz
     github: false
@@ -159,6 +182,13 @@ SanneAbeln:
 dyusuf:
     name: Dilmurat Yusuf
 
+<<<<<<< HEAD
+=======
+emmaleith:
+    name: Emma Leith
+    email: leith023@umn.edu
+
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 emichn:
     name: Elisa Michon
 
@@ -174,6 +204,13 @@ erxleben:
     email: anikaerxleben@gmail.com
     orcid: 0000-0002-7427-6478
 
+<<<<<<< HEAD
+=======
+ethering:
+    name: Graham Etherington
+    orcid: 0000-0002-5003-1425
+
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 fabio-cumbo:
     name: Fabio Cumbo
     email: fabio.cumbo@gmail.com
@@ -347,6 +384,12 @@ mccalluc:
 melpetera:
     name: Mélanie Petera
 
+<<<<<<< HEAD
+=======
+michelemaroni89:
+    name: Michele Maroni
+
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 moffmade:
     name: Cory Maughmer
 
@@ -367,6 +410,14 @@ mvdbeek:
 mwolfien:
     name: Markus Wolfien
 
+<<<<<<< HEAD
+=======
+nagoue:
+    name: Nadia Goué
+    email: nadia.goue@uca.fr
+    orcid: 0000-0003-2750-1473
+
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 natefoo:
     name: Nate Coraor
     gitter: natefoo
@@ -386,6 +437,12 @@ NickSto:
 
 nsoranzo:
     name: Nicola Soranzo
+<<<<<<< HEAD
+=======
+    gitter: nsoranzo
+    orcid: 0000-0003-3627-5340
+    twitter: NicolaSoranzo
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 
 nuwang:
     name: Nuwan Goonasekera
@@ -396,6 +453,12 @@ nvk747:
 odoppelt:
     name: Olivia Doppelt-Azeroual
 
+<<<<<<< HEAD
+=======
+olanag1:
+    name: Olha Nahorna
+
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 pajanne:
     name: Anne Pajon
 
@@ -462,7 +525,16 @@ stortebecker:
 subinamehta:
     name: Subina Mehta
     email: subinamehta@gmail.com
+<<<<<<< HEAD
 
+=======
+    twitter: Subina_Mehta
+    linkedin: subinamehta
+    gitter: subinamehta
+    orcid: 0000-0001-9818-0537
+    
+    
+>>>>>>> 4c20cc70897846b93043c2fed195d7efcffac751
 tealiie:
 
 thomasmanke:
