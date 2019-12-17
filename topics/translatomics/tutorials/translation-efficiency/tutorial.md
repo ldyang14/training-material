@@ -16,8 +16,8 @@ contributors:
 - IceApink
 ---
 
-
 # Introduction
+
 {:.no_toc}
 
 <!-- This is a comment. -->
@@ -41,11 +41,29 @@ Therefore, a few tools and strategies were developed for exploring changes in ge
 >
 {: .agenda}
 
+# Import data
+
+> ### {% icon hands_on %} Hands-on: Data upload
+>
+> 1. Create a new history for this tutorial
+>
+>    {% include snippets/create_new_history.md %}
+>
+> 2. Import the files from [Figshare](https://figshare.com/s/651afb45fbb5fc9d7010) 
+>
+>    ```
+>    https://ndownloader.figshare.com/files/20026487?private_link=651afb45fbb5fc9d7010
+>    https://ndownloader.figshare.com/files/20026490?private_link=651afb45fbb5fc9d7010
+>    ```
+>    {% include snippets/import_via_link.md %}
+>    {% include snippets/import_from_data_library.md %}
+>
+> 3. Check that the datatype of count table is `tabular` and the sampleinfo file is `csv`. If not, you should change the datatype according to steps below.
+>
+>    {% include snippets/change_datatype.md datatype="datatypes" %}
+{: .hands_on}
+
 # Calculate translational efficiency
-
-
-
-***TODO***
 
 > ### {% icon hands_on %} Hands-on:  Calculate translational efficiency using RiboDiff
 >

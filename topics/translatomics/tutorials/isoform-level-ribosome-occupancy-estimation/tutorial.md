@@ -2,7 +2,7 @@
 layout: tutorial_hands_on
 
 title: Isoform-level ribosome occupancy estimation
-zenodo_link: ''
+zenodo_link: 'https://figshare.com/s/fcd05b448006437143f0'
 questions:
 - What are difficulties in the process to calculate gene isoforms expression at the translational level?
 - What can we learn from the from gene expression at a more refine level?
@@ -32,13 +32,6 @@ We can know the precise location of reads through paired-end sequencing, thereby
 
 Therefore, a series of tools have been developed for quantification of genes and its isoforms abundance more accurately at the translatome level, for now, thus to explore gene function and molecular mechanisms more precisely. 
 
-***TODO***
-
-|   Name    | Inputs                                              | Outputs |
-| :-------: | :-------------------------------------------------- | ------- |
-|  Ribomap  | FastQ (RNA-seq & Ribo-seq); Transcriptome reference | K       |
-| Riboshape | K                                                   | K       |
-
 
 
 
@@ -51,29 +44,47 @@ Therefore, a series of tools have been developed for quantification of genes and
 >
 {: .agenda}
 
+# Import data 
 
-
-
-
-# Calculate gene expression at the isoform level
-
-
-
-> ### {% icon hands_on %} Hands-on: Calculate isoform level using Ribomap
+> ### {% icon hands_on %} Hands-on: Data upload
 >
-> - Run {% icon tool %} **Ribomap** with following parameters:
->   - {% icon param-collection %} *"Input RNA-seq read fastq.gz file for transcript abundance estimation"*: `RNA aligned reads (BAM)` 
->   - {% icon param-collection %} *"Input ribosome profiling (riboseq) read fastq.gz file"*: `RPF aligned reads (BAM)` 
->   - {% icon param-text %} *"The linker sequence attached to the 5' end of the Ribo-Seq reads."*:  `CTGTAGGCACCATCAAT`  
+> 1. Create a new history for this tutorial
+> 2. Import the files from [Zenodo]() or from the shared data library
 >
+>    ```
+>    https://ndownloader.figshare.com/files/20042474?private_link=fcd05b448006437143f0
+>    https://ndownloader.figshare.com/files/20042471?private_link=fcd05b448006437143f0
+>    ```
+>    ***TODO***: *Add the files by the ones on Zenodo here (if not added)*
+>
+>    ***TODO***: *Remove the useless files (if added)*
+>
+>    {% include snippets/import_via_link.md %}
+>    {% include snippets/import_from_data_library.md %}
+>
+> 3. Rename the datasets
+> 4. Check that the datatype
+>
+>    {% include snippets/change_datatype.md datatype="datatypes" %}
 {: .hands_on}
 
+# Calculate gene expression at the isoform level with **Ribomap**
 
-
-
+> ### {% icon hands_on %} Hands-on: Calculate gene expression at the isoform level with **Ribomap**
+>
+> 1. **Ribomap** {% icon tool %} with the following parameters:
+>    - {% icon param-file %} *"Input RNA-seq read fastq.gz file for transcript abundance estimation"*: `output` (Input dataset)
+>    - {% icon param-file %} *"Input ribosome profiling (riboseq) read fastq.gz file"*: `output` (Input dataset)
+>    - {% icon param-file %} *"Input trascriptome reference fasta file"*: `output` (Input dataset)
+>    - *"Use contaminant sequence fasta file?"*: `no`
+>    - *"Use coding sequence (CDS) range for all transcripts?"*: `no`
+>    - *"The linker sequence attached to the 5' end of the Ribo-Seq reads."*:  `CTGTAGGCACCATCAAT`  
+>    - *"Minimun read length to keep for downstream analysis."*: `25`
+>    - *"Maximum riboseq read length to keep for downstream analysis."*: `34`
+{: .hands_on}
 
 # Conclusion
+
 {:.no_toc}
 
-Sum up the tutorial and the key takeaways here. We encourage adding an overview image of the
-pipeline used.
+In short,  we can know more details about mechanism of gene regulation through dectecting expression of gene isoforms. However, we have to face certain new challenges as higher resolution provided by ribosome profiling. For example, the determination of reads mapped on exon-exon junctions. Hence, a certain of new tools have been developing to resolve these issues for helping us to explore and understand the physiological process. 

@@ -55,7 +55,7 @@ How many reads were mapped to the genome successfully? If there is a very low ma
 >      - {% icon param-select %} *"Which tool was used generate logs?"*: `HISAT2`
 >      - {% icon param-collection %} *"Output of HISAT2"*: `Mapping summary` (output of **HISAT2** {% icon tool %})
 > 2. Inspect the `Webpage` output from MultiQC 
-		{: .hands_on}	
+	{: .hands_on}	
 
 ![Mapping results of Hisat2](../../images/quality-of-mapped-reads/hisat2_mapstats_mqc.png "Mapping results of Hisat2")
 
@@ -85,9 +85,9 @@ The picture below indicates a part of aggregated statistical information about `
 
 ![Samtools alignment metric](../../images/quality-of-mapped-reads/samtools_stats_2.png "Samtools alignment metric")
 
-# Quality control using Ribo-SeqC
+# Quality control using Ribo-seqC
 
-> ### {% icon hands_on %} Hands-on: Check triplet nucleotide periodicity using Ribo-SeqC
+> ### {% icon hands_on %} Hands-on: Check triplet nucleotide periodicity using Ribo-seqC
 >
 > - Because Ribo-SeqC needs twobit format of fasta, we should transfer fasta file to twobit file with faToTwoBit.
 >

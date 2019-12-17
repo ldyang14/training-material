@@ -13,13 +13,13 @@ objectives:
 - They are single sentences describing what a learner should be able to do once they
   have completed the tutorial
 - You can use Bloom's Taxonomy to write effective learning objectives
-time_estimation: 3H
+time_estimation: ''
 key_points:
 - The take-home messages
 - They will appear at the end of the tutorial
 contributors:
-- contributor1
-- contributor2
+- ldyang14
+- IceApink
 
 ---
 
@@ -129,13 +129,234 @@ The idea is to keep the theory description before quite simple to focus more on 
 A big step can have several subsections or sub steps:
 
 
-## Sub-step with **My Tool**
+## Sub-step with **ctat_concatenate**
 
 > ### {% icon hands_on %} Hands-on: Task description
 >
-> 1. **My Tool** {% icon tool %} with the following parameters:
->    - {% icon param-file %} *"Input file"*: File
->    - *"Parameter"*: `a value`
+> 1. **ctat_concatenate** {% icon tool %} with the following parameters:
+>    - {% icon param-file %} *"Concatenate Dataset"*: `output` (Input dataset)
+>    - In *"Dataset"*:
+>        - {% icon param-repeat %} *"Insert Dataset"*
+>            - {% icon param-file %} *"Select"*: `output` (Input dataset)
+>
+>    ***TODO***: *Check parameter descriptions*
+>
+>    ***TODO***: *Consider adding a comment or tip box*
+>
+>    > ### {% icon comment %} Comment
+>    >
+>    > A comment about the tool or something else. This box can also be in the main text
+>    {: .comment}
+>
+{: .hands_on}
+
+***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
+
+> ### {% icon question %} Questions
+>
+> 1. Question1?
+> 2. Question2?
+>
+> > ### {% icon solution %} Solution
+> >
+> > 1. Answer for question1
+> > 2. Answer for question2
+> >
+> {: .solution}
+>
+{: .question}
+
+## Sub-step with **Join datasets by identifier column**
+
+> ### {% icon hands_on %} Hands-on: Task description
+>
+> 1. **Join datasets by identifier column** {% icon tool %} with the following parameters:
+>    - {% icon param-file %} *"Select table"*: `out_file1` (output of **ctat_concatenate** {% icon tool %})
+>    - In *"Select table"*:
+>        - {% icon param-repeat %} *"Insert Select table"*
+>            - {% icon param-file %} *"Select table"*: `output` (Input dataset)
+>    - *"Column used for joining"*: `c1`
+>
+>    ***TODO***: *Check parameter descriptions*
+>
+>    ***TODO***: *Consider adding a comment or tip box*
+>
+>    > ### {% icon comment %} Comment
+>    >
+>    > A comment about the tool or something else. This box can also be in the main text
+>    {: .comment}
+>
+{: .hands_on}
+
+***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
+
+> ### {% icon question %} Questions
+>
+> 1. Question1?
+> 2. Question2?
+>
+> > ### {% icon solution %} Solution
+> >
+> > 1. Answer for question1
+> > 2. Answer for question2
+> >
+> {: .solution}
+>
+{: .question}
+
+## Sub-step with **Filter**
+
+> ### {% icon hands_on %} Hands-on: Task description
+>
+> 1. **Filter** {% icon tool %} with the following parameters:
+>    - {% icon param-file %} *"Filter"*: `out_file1` (output of **Join datasets by identifier column** {% icon tool %})
+>    - *"With following condition"*: `c7<0.05 and c3 > 1`
+>    - *"Number of header lines to skip"*: `1`
+>
+>    ***TODO***: *Check parameter descriptions*
+>
+>    ***TODO***: *Consider adding a comment or tip box*
+>
+>    > ### {% icon comment %} Comment
+>    >
+>    > A comment about the tool or something else. This box can also be in the main text
+>    {: .comment}
+>
+{: .hands_on}
+
+***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
+
+> ### {% icon question %} Questions
+>
+> 1. Question1?
+> 2. Question2?
+>
+> > ### {% icon solution %} Solution
+> >
+> > 1. Answer for question1
+> > 2. Answer for question2
+> >
+> {: .solution}
+>
+{: .question}
+
+## Sub-step with **Sort**
+
+> ### {% icon hands_on %} Hands-on: Task description
+>
+> 1. **Sort** {% icon tool %} with the following parameters:
+>    - {% icon param-file %} *"Sort Dataset"*: `out_file1` (output of **Filter** {% icon tool %})
+>    - *"on column"*: `c7`
+>    - *"with flavor"*: `General numeric sort`
+>    - *"everything in"*: `Ascending order`
+>    - *"Number of header lines to skip"*: `1`
+>
+>    ***TODO***: *Check parameter descriptions*
+>
+>    ***TODO***: *Consider adding a comment or tip box*
+>
+>    > ### {% icon comment %} Comment
+>    >
+>    > A comment about the tool or something else. This box can also be in the main text
+>    {: .comment}
+>
+{: .hands_on}
+
+***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
+
+> ### {% icon question %} Questions
+>
+> 1. Question1?
+> 2. Question2?
+>
+> > ### {% icon solution %} Solution
+> >
+> > 1. Answer for question1
+> > 2. Answer for question2
+> >
+> {: .solution}
+>
+{: .question}
+
+## Sub-step with **Select first**
+
+> ### {% icon hands_on %} Hands-on: Task description
+>
+> 1. **Select first** {% icon tool %} with the following parameters:
+>    - *"Select first"*: `21`
+>    - {% icon param-file %} *"from"*: `out_file1` (output of **Sort** {% icon tool %})
+>
+>    ***TODO***: *Check parameter descriptions*
+>
+>    ***TODO***: *Consider adding a comment or tip box*
+>
+>    > ### {% icon comment %} Comment
+>    >
+>    > A comment about the tool or something else. This box can also be in the main text
+>    {: .comment}
+>
+{: .hands_on}
+
+***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
+
+> ### {% icon question %} Questions
+>
+> 1. Question1?
+> 2. Question2?
+>
+> > ### {% icon solution %} Solution
+> >
+> > 1. Answer for question1
+> > 2. Answer for question2
+> >
+> {: .solution}
+>
+{: .question}
+
+## Sub-step with **Cut**
+
+> ### {% icon hands_on %} Hands-on: Task description
+>
+> 1. **Cut** {% icon tool %} with the following parameters:
+>    - *"Cut columns"*: `c1,c8-c12`
+>    - {% icon param-file %} *"From"*: `out_file1` (output of **Select first** {% icon tool %})
+>
+>    ***TODO***: *Check parameter descriptions*
+>
+>    ***TODO***: *Consider adding a comment or tip box*
+>
+>    > ### {% icon comment %} Comment
+>    >
+>    > A comment about the tool or something else. This box can also be in the main text
+>    {: .comment}
+>
+{: .hands_on}
+
+***TODO***: *Consider adding a question to test the learners understanding of the previous exercise*
+
+> ### {% icon question %} Questions
+>
+> 1. Question1?
+> 2. Question2?
+>
+> > ### {% icon solution %} Solution
+> >
+> > 1. Answer for question1
+> > 2. Answer for question2
+> >
+> {: .solution}
+>
+{: .question}
+
+## Sub-step with **heatmap2**
+
+> ### {% icon hands_on %} Hands-on: Task description
+>
+> 1. **heatmap2** {% icon tool %} with the following parameters:
+>    - {% icon param-file %} *"Input should have column headers - these will be the columns that are plotted"*: `out_file1` (output of **Cut** {% icon tool %})
+>    - *"Enable data clustering"*: `Yes`
+>    - *"Coloring groups"*: `Blue to white to red`
+>    - *"Data scaling"*: `Scale my data by row`
 >
 >    ***TODO***: *Check parameter descriptions*
 >

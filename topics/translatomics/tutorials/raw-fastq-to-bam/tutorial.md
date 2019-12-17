@@ -26,13 +26,13 @@ contributors:
 
 <!-- This is a comment. -->
 
-Ribosome profiling (Ribo-Seq) is a high throughput sequencing technology to detect the gene expression through sequencing ribosome-protected fragments. Although we discovered a large amount of gene expression and regulation through RNA-seq, there are still numerous aspects about gene regulation that could not be explained by RNA-seq, such as regulatory mechanism of translation. Then, the emergency of a new technology called Ribo-Seq fills the technology gap for the gene translational researches. More and more studies proved the importance and accuracy about Ribo-Seq, which greatly facilitated the development about related tools for analyzing Ribo-Seq data. Therefore, it is badly needed to integrate those tools into one system to simple analysis process about Ribo-Seq for researches who not have computer background.
+Ribosome profiling (Ribo-Seq) is a high throughput sequencing technology to detect the gene expression through sequencing ribosome-protected fragments. Although we discovered a large amount of gene expression and regulation through RNA-seq, there are still numerous aspects about gene regulation that could not be explained by RNA-seq, such as regulatory mechanism of translation. Then, the emergency of a new technology called Ribo-Seq fills the technology gap for the gene translational researches. More and more studies proved the importance and accuracy about Ribo-Seq, which greatly facilitated the development about related tools for analyzing Ribo-Seq data. Therefore, it is badly needed that integrating those tools into one system to simplify the analysis process about Ribo-Seq data for researchers who do not have a computer background.
 
 The step to analyse Ribo-Seq data is similar with analyzing RNA-seq data, but some steps are different and need to be noted, such as removing contaminative reads from rRNA and tRNA. Therefore, we use a dataset to demonstrate how to analyse Ribo-Seq data and what parts need to be noticed.
 
 ## The dataset
 
-The sample dataset in this tutorial comes from the paper of *Methylation of human eukaryotic elongation factor alpha (eEF1A) by a member of a novel protein lysine methyltransferase family modulates mRNA translation,*  which is publicated on the Nucleic Acids Research. The detail information of data could be obtained from Gene Expression Omnibus database (GEO) through accessing number of **GSE97140**, and raw data could also be downloaded from there.
+The sample dataset in this tutorial comes from the paper of *Methylation of human eukaryotic elongation factor alpha (eEF1A) by a member of a novel protein lysine methyltransferase family modulates mRNA translation*  ( {% cite jakobsson2017methylation %} )，which is publicated on the Nucleic Acids Research. The detail information of data could be obtained from Gene Expression Omnibus database (GEO) through accessing number of **GSE97140**, and raw data could also be downloaded from there.
 
 The dataset used as a sample consists of two groups, one group knockout  the gene *EEF1AKMT4,* which is a lysine (K) specific methyltransferase that efficiently methylates K36 in eukaryotic tranlation elongation factor 1 alpha (eEF1A), and the other is control group as WT.
 
@@ -73,7 +73,6 @@ FastQ files, produced by the sequencing, contain sequences and quality informati
 Here, we only select 10000 reads randomly for each sample to save time of analysis. When you want to mining information to explore significance from your own data or public data, full data should be uploaded. The small dataset used in this tutorial can be downloaded from the [Figshare](https://figshare.com/account/articles/10011419). You can also copy information in the gray box below to import this data through [Galaxy Rule-based Uploader](https://galaxyproject.github.io/training-material/topics/galaxy-data-manipulation/tutorials/upload-rules/tutorial.html).
 
 ```bash
-study_accession	experiment_accession	sample_title	URL
 PRJNA380795	SRX2677571	KO1_RPF	https://ndownloader.figshare.com/files/18055442?private_link=b746ccf9f27f4135aa1d
 PRJNA380795	SRX2677572	KO2_RPF	https://ndownloader.figshare.com/files/18055445?private_link=b746ccf9f27f4135aa1d
 PRJNA380795	SRX2677573	KO3_RPF	https://ndownloader.figshare.com/files/18055448?private_link=b746ccf9f27f4135aa1d
@@ -108,7 +107,7 @@ If your data is on your local disk, you can upload them through steps below.
 
 ### Reference sequence
 
-The reference sequence such as genomoe or transcriptome is a file that contains information of nucleotide sequence. Genomes of common species have be built-in the Galaxy, so we don't need to upload the reference genome unless we only need to parts of the genome or a specific reference sequence from ourselves.
+The reference sequence such as genome or transcriptome is a file that contains information about the nucleotide sequence. Genomes of common species have been built-in the Galaxy, so we don’t need to upload the reference genome unless we only need to parts of the genome or a specific reference sequence from ourselves.
 
 ### Annotation file of the reference sequence
 

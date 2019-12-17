@@ -55,9 +55,9 @@ Sequencing reads from Ribosome profiling are not all from actively translated re
 >      https://ndownloader.figshare.com/files/20028590?private_link=4cd0d0cd4c81705fdf92
 >      https://ndownloader.figshare.com/files/20028587?private_link=4cd0d0cd4c81705fdf92
 >      ```
->
 >    {% include snippets/import_from_data_library.md %}
-{:. hands_on}
+{: .hands_on}
+
 # Detecting non-ribosomal reads 
 
 The difference between non-ribomsome protein-RNA complexes and ribosome complexes is shown below. Reads from ribosome-RNA complexes can be observed obviously 3-nt periodicity while reads from non-ribosomal protein-RNA complexes are highly localized distribution. 
